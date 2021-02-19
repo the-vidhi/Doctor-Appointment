@@ -1,0 +1,528 @@
+﻿@using Microsoft.AspNetCore.Http
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Heal n Cure | @ViewData["Title"]</title>
+
+    <!--[if lt IE 10]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+          <![endif]-->
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Gradient Able Bootstrap admin template made using Bootstrap 4 and it has huge amount of ready made feature, UI components, pages which completely fulfills any dashboard needs." />
+    <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
+    <meta name="author" content="codedthemes" />
+
+    <link rel="icon" href="~/Admin/6.png" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Admin/files/bower_components/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Admin/files/assets/icon/icofont/css/icofont.css" />
+    <link rel="stylesheet" type="text/css" href="~/Admin/files/assets/icon/ion-icon/css/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Admin/files/assets/icon/themify-icons/themify-icons.css" />
+    <link rel="stylesheet" type="text/css" href="~/Admin/files/assets/icon/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Admin/files/assets/css/jquery.mCustomScrollbar.css" />
+    <link rel="stylesheet" href="~/Admin/files/assets/pages/chart/radial/css/radial.css" type="text/css" media="all" />
+    <link rel="stylesheet" type="text/css" href="~/Admin/files/assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/Admin/files/assets/icon/simple-line-icons/css/simple-line-icons.css" />
+    <link rel="stylesheet" type="text/css" href="~/Admin/files/bower_components/switchery/css/switchery.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Admin/files/bower_components/bootstrap-tagsinput/css/bootstrap-tagsinput.css" />
+</head>
+<body>
+
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+            <nav class="navbar header-navbar pcoded-header">
+                <div class="navbar-wrapper">
+                    <div class="navbar-logo">
+                        <a class="mobile-menu" id="mobile-collapse" href="#!">
+                            <i class="ti-menu"></i>
+                        </a>
+                        <div class="mobile-search">
+                            <div class="header-search">
+                                <div class="main-search morphsearch-search">
+                                    <div class="input-group">
+                                        <span class="input-group-addon search-close"><i class="ti-close"></i></span>
+                                        <input type="text" class="form-control" placeholder="Enter Keyword" />
+                                        <span class="input-group-addon search-btn"><i class="ti-search"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="index.html">
+                            <img  src="~/Admin/main2.png" height="90" width="150" alt="Theme-Logo" />
+                        </a>
+                        <a class="mobile-options">
+                            <i class="ti-more"></i>
+                        </a>
+                    </div>
+                    <div class="navbar-container container-fluid">
+                        <ul class="nav-left">
+                            <li>
+                                <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
+                            </li>
+                            <li class="header-search">
+                                <div class="main-search morphsearch-search">
+                                    <div class="input-group">
+                                        <span class="input-group-addon search-close"><i class="ti-close"></i></span>
+                                        <input type="text" class="form-control" />
+                                        <span class="input-group-addon search-btn"><i class="ti-search"></i></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#!" onclick="javascript:toggleFullScreen()">
+                                    <i class="ti-fullscreen"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav-right">
+
+                            <li class="user-profile header-notification">
+                                <a href="#!">
+                                    <img src="~/Admin/files/assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image" />
+                                    <span>Vasu</span>
+                                    <i class="ti-angle-down"></i>
+                                </a>
+                                <ul class="show-notification profile-notification">
+                                    <li>
+                                        <a href="../Login/Check/1">
+                                            <i class="ti-marker-alt"></i> Change Password
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a asp-controller="Login" asp-action="Logout">
+                                            <i class="ti-power-off"></i> Logout
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            
+
+            
+
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+                    <nav class="pcoded-navbar">
+                        <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
+                        <div class="pcoded-inner-navbar main-menu">
+                            <div class="pcoded-navigation-label">Navigation</div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class="pcoded-hasmenu active pcoded-trigger">
+                                    <a href="../Home/Index">
+                                        <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                                        <span class="pcoded-mtext">Dashboard</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+
+                                </li>
+
+                            </ul>
+
+                            <div class="pcoded-navigation-label"></div>
+                            <ul class="pcoded-item pcoded-left-item">
+
+                                <li class="pcoded-hasmenu">
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="ti-pencil-alt"></i><b>C</b></span>
+                                        <span class="pcoded-mtext">Category</span>
+
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class="">
+                                            <a href="../Category/Create ">
+                                                <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                                                <span class="pcoded-mtext">Category Add</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+
+                                        </li>
+
+                                        <li class="">
+                                            <a href="../Category/Index">
+                                                <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                                                <span class="pcoded-mtext">Category List</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+
+
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <ul class="pcoded-item pcoded-left-item">
+
+                                <li class="pcoded-hasmenu">
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="icon-wallet"></i><b>P</b></span>
+                                        <span class="pcoded-mtext">Payment Types</span>
+
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class="">
+                                            <a href="../Payment/Create">
+                                                <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                                                <span class="pcoded-mtext">Payment Type Add</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+
+                                        </li>
+
+                                        <li class=" ">
+                                            <a href=" ../Payment/Index">
+                                                <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                                                <span class="pcoded-mtext">Payment Type List</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+
+
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <div class="pcoded-navigation-label">Locations</div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class="pcoded-hasmenu">
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="icon-location-pin"></i><b>S</b></span>
+                                        <span class="pcoded-mtext">State</span>
+
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class=" ">
+                                            <a href="../State/Create">
+                                                <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                                                <span class="pcoded-mtext">State Add</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+
+                                        </li>
+
+                                        <li class="">
+                                            <a href="../State/Index">
+                                                <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                                                <span class="pcoded-mtext">State List</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="pcoded-hasmenu">
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="icon-map"></i><b>C</b></span>
+                                        <span class="pcoded-mtext">City</span>
+
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class=" ">
+                                            <a href=" ../City/Create">
+                                                <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                                                <span class="pcoded-mtext">City Add</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+
+                                        </li>
+
+                                        <li class=" ">
+                                            <a href=" ../City/Index">
+                                                <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                                                <span class="pcoded-mtext">City List</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+
+                            <div class="pcoded-navigation-label">Medical</div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class="pcoded-hasmenu">
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="ti-support f-left"></i><b>M</b></span>
+                                        <span class="pcoded-mtext">Medicine</span>
+
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class=" ">
+                                            <a href=" ../Medicine/Create">
+                                                <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                                                <span class="pcoded-mtext">Medicine Add</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+
+                                        </li>
+
+                                        <li class=" ">
+                                            <a href=" ../Medicine/Index">
+                                                <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                                                <span class="pcoded-mtext">Medicine List</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+
+                                        @*<li class=" ">
+                                            <a href="../Medicine_Image/Create">
+                                                <span class="pcoded-micon"><i class="ti-image"></i></span>
+                                                <span class="pcoded-mtext">Medicine Image Add</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+
+                                        <li class=" ">
+                                            <a href="../Medicine_Image/Index">
+                                                <span class="pcoded-micon"><i class="ti-gallery"></i></span>
+                                                <span class="pcoded-mtext">Medicine Image List</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>*@
+                                    </ul>
+                                </li>
+
+                                <li class="pcoded-hasmenu">
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="icon-book-open"></i><b>B</b></span>
+                                        <span class="pcoded-mtext">Bill</span>
+
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+
+                                        <li class=" ">
+                                            <a href="../Bill/Index">
+                                                <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                                                <span class="pcoded-mtext">Bill List</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="pcoded-hasmenu">
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="ti-shopping-cart f-left"></i><b>O</b></span>
+                                        <span class="pcoded-mtext">Order</span>
+
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+
+                                        <li class=" ">
+                                            <a href="../Order/Index">
+                                                <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                                                <span class="pcoded-mtext">Order List</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <div class="pcoded-navigation-label">Doctors</div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class="pcoded-hasmenu">
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="fa fa-users f-left"></i><b>D</b></span>
+                                        <span class="pcoded-mtext">Doctor</span>
+
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class=" ">
+                                            <a href="../Doctor/Index">
+                                                <span class="pcoded-micon"><i class="fa fa-users f-left"></i></span>
+                                                <span class="pcoded-mtext">Doctor List</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class=" ">
+                                            <a href="../Doctor/BlockedDoctor">
+                                                <span class="pcoded-micon"><i class="icon-user-unfollow"></i></span>
+                                                <span class="pcoded-mtext">Blocked Doctor List</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="pcoded-hasmenu">
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="fa fa-heartbeat"></i><b>C</b></span>
+                                        <span class="pcoded-mtext">Clinic</span>
+
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class="">
+                                            <a href="../Clinic/Index">
+                                                <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                                                <span class="pcoded-mtext"> Clinic Llist </span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+
+                                        </li>
+
+                                        <li class=" ">
+                                            <a href="../Clinic/BlockedClinic">
+                                                <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                                                <span class="pcoded-mtext">Blocked Clinic</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <div class="pcoded-navigation-label">Patients</div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class="pcoded-hasmenu">
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="fa fa-wheelchair f-left"></i><b>P</b></span>
+                                        <span class="pcoded-mtext">Patient</span>
+
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class=" ">
+                                            <a href="../Patient/Index">
+                                                <span class="pcoded-micon"><i class="ti-wheelchair"></i></span>
+                                                <span class="pcoded-mtext">Patient List</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+
+                                        </li>
+
+                                        <li class=" ">
+                                            <a href="../Patient/BlockedPatient">
+                                                <span class="pcoded-micon"><i class="ti-wheelchair"></i></span>
+                                                <span class="pcoded-mtext">Blocked Patient List</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <div class="pcoded-navigation-label"></div>
+                            <ul class="pcoded-item pcoded-left-item">
+
+                                <li class="pcoded-hasmenu">
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="ti-agenda"></i><b>R</b></span>
+                                        <span class="pcoded-mtext">Reviews</span>
+
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class=" ">
+                                            <a href="../Review/Index">
+                                                <span class="pcoded-micon"><i class="ti-agenda"></i></span>
+                                                <span class="pcoded-mtext">Review List</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+
+                                        </li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <ul class="pcoded-item pcoded-left-item">
+
+                                <li class="pcoded-hasmenu">
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="ti-folder"></i><b>C</b></span>
+                                        <span class="pcoded-mtext">Career</span>
+
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class=" ">
+                                            <a href="../Career/Index">
+                                                <span class="pcoded-micon"><i class="ti-folder"></i></span>
+                                                <span class="pcoded-mtext">Applicant List</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+
+                                        </li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+
+                            <div class="main-body">
+
+                                @RenderBody()
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/Admin/files/bower_components/jquery/js/jquery.min.js "></script>
+    <script src="~/Admin/files/bower_components/jquery-ui/js/jquery-ui.min.js "></script>
+    <script src="~/Admin/files/bower_components/popper.js/js/popper.min.js"></script>
+    <script src="~/Admin/files/bower_components/bootstrap/js/bootstrap.min.js "></script>
+    <script src="~/Admin/files/assets/pages/widget/excanvas.js "></script>
+
+    <script src="~/Admin/files/bower_components/jquery-slimscroll/js/jquery.slimscroll.js "></script>
+
+    <script src="~/Admin/files/bower_components/modernizr/js/modernizr.js "></script>
+    <script src="~/Admin/files/bower_components/modernizr/js/css-scrollbars.js"></script>
+    <script src="~/Admin/files/bower_components/switchery/js/switchery.min.js"></script>
+    <script src="~/Admin/files/bower_components/bootstrap-tagsinput/js/bootstrap-tagsinput.js"></script>
+    <script src="~/Admin/files/bower_components/bootstrap-maxlength/js/bootstrap-maxlength.js"></script>
+
+    <script src="~/Admin/files/assets/js/SmoothScroll.js"></script>
+    <script src="~/Admin/files/assets/js/jquery.mCustomScrollbar.concat.min.js "></script>
+    <script src="~/Admin/files/assets/pages/icon-modal.js"></script>
+    <script src="~/Admin/files/bower_components/chart.js/js/Chart.js"></script>
+    <script src="~/Admin/files/assets/pages/widget/amchart/amcharts.js"></script>
+    <script src="~/Admin/files/assets/pages/widget/amchart/serial.js"></script>
+    <script src="~/Admin/files/assets/pages/widget/amchart/light.js"></script>
+
+    <script src="~/Admin/files/assets/js/pcoded.min.js"></script>
+    <script src="~/Admin/files/assets/js/navbar-image/vertical-layout.min.js "></script>
+
+    <script src="~/Admin/files/assets/pages/edit-table/jquery.tabledit.js"></script>
+    <script src="~/Admin/files/assets/pages/edit-table/editable.js"></script>
+    <script src="~/Admin/files/assets/pages/task-board/task-board.js"></script>
+    <script src="~/Admin/files/assets/pages/dashboard/custom-dashboard.js"></script>
+    <script src="~/Admin/files/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <script src="~/Admin/files/assets/js/script.js "></script>
+    <script src="~/jquery-validate/jquery.validate.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+    <script src="~/jquery-validate/jquery.validate.min.js"></script>
+
+    <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Admin/files/assets/pages/advance-elements/swithces.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.4/typeahead.bundle.min.js"></script>
+
+</body>
+</html>

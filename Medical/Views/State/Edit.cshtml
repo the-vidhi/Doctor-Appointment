@@ -1,0 +1,63 @@
+﻿@model Medical.Models.State
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-body">
+    <div class="page-wrapper">
+        <div class="page-header card">
+            <div class="card-block">
+                <h5 class="m-b-10">Edit State</h5>
+                <ul class="breadcrumb-title b-t-default p-t-10">
+                    <li class="breadcrumb-item">
+                        <a> <i class="fa fa-home"></i> </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="../Index">State List</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a>Edit State</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="page-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Add State Here...</h5>
+                        </div>
+                        <div class="card-block">
+                            <form asp-action="Edit">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group row">
+                                    <input type="hidden" asp-for="State_ID" />
+                                    <label class="col-sm-2 col-form-label">State Name : </label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" asp-for="State_Name">
+                                        <span asp-validation-for="State_Name" class="text-danger"></span>
+                                        <span class="messages"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2"></label>
+                                    <div class="col-sm-10">
+
+                                        <button class="btn btn-grd-success btn-round">EDIT</button>
+                                        <!--<input type="submit" value="Create" class="btn btn-primary m-b-0" />-->
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

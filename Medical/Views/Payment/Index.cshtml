@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Medical.Models.Payment>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="pcoded-inner-content">
+
+    <div class="main-body">
+        <div class="page-wrapper">
+            <div class="page-header card">
+                <div class="card-block">
+                    <h5 class="m-b-10">Payment Type List</h5>
+                    <ul class="breadcrumb-title b-t-default p-t-10">
+                        <li class="breadcrumb-item">
+                            <a href="../Home/Index"> <i class="fa fa-home"></i> </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a>Payment Type List</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="page-body">
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Payment Type List</h5>
+
+                                <a asp-action="Create" class="btn btn-grd-success btn-round f-right d-inline-block ">
+                                    <i class="icofont icofont-plus m-r-5"></i> ADD PAYMENT TYPE
+                                </a>
+                            </div>
+                            <div class="card-block">
+                                <div class="table-responsive">
+                                    <div class="table-content">
+                                        <div class="project-table">
+                                            <table id="e-product-list" class="table table-striped dt-responsive nowrap">
+                                                <thead>
+                                                    <tr>
+                                                        <th>  @Html.DisplayNameFor(model => model.Payment_Type_Name) </th>
+                                                        <th> </th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in Model)
+                                                    {
+                                                        <tr>
+                                                            <td class="pro-name">
+                                                                @Html.DisplayFor(modelItem => item.Payment_Type_Name)
+                                                            </td>
+                                                            <td>
+                                                            </td>
+                                                            <td class="action-icon">
+                                                                <a asp-action="Edit" asp-route-id="@item.Payment_Type_ID" class="btn btn-grd-info btn-round">
+                                                                    <span class="icofont icofont-ui-edit"></span>
+                                                                    EDIT
+                                                                </a>
+                                                                <a asp-action="Delete" asp-route-id="@item.Payment_Type_ID" class="btn btn-grd-danger btn-round">
+                                                                    <span class="icofont icofont-ui-delete"></span>
+                                                                    DELETE
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md-overlay"></div>
+            </div>
+        </div>
+    </div>
+    
+    </div>
+</div>
+
