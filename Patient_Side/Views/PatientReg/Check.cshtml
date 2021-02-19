@@ -1,0 +1,74 @@
+﻿@model Medical.Models.Patient
+
+@{
+    ViewData["Title"] = "Verify User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    <script src="/lib/jquery/dist/jquery.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+        var items = "<option value='0'>Select City</option>";
+            $('#City_ID').html(items);
+
+    });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#State_ID').change(function () {
+                var url = '@Url.Content("~/")' + "PatientReg/GetSubCategory";
+                var ddlsource = "#State_ID";
+                $.getJSON(url, { State_ID: $(ddlsource).val() }, function (data) {
+                    var items = '';
+                    $("#City_ID").empty();
+                    $.each(data, function (i, city) {
+                        items += "<option value='" + city.value + "'>" + city.text + "</option>";
+                    });
+                    $('#City_ID').html(items);
+                });
+            });
+        });
+    </script>
+}
+
+<section class="login-section">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <div class="column col-lg-12 col-md-12 col-sm-12">
+                <!-- Login Form -->
+                <div class="login-form">
+                    <h2>Verify User</h2>
+                    <!--Login Form-->
+                    <form method="post" asp-action="Check">
+                        <div class="form-group">
+                            <label>Username or Email</label>
+                            <input type="text" asp-for="Patient_Email" placeholder="Name or Email " required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Enter Your Password</label>
+                            <input type="password" asp-for="Patient_Password" placeholder="Password" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="checkbox" name="shipping-option" id="account-option-1">&nbsp; <label for="account-option-1">Remember me</label>
+                        </div>
+
+                        <div class="form-group">
+                            <!--<button class="theme-btn btn-style-one" type="submit" name="submit-form"><span class="btn-title">LOGIN</span></button>-->
+                            <input type="submit" class="theme-btn btn-style-three" value="Login" />
+                        </div>
+
+                        <div class="form-group pass">
+                            <a href="#" class="psw">Lost your password?</a>
+                        </div>
+                    </form>
+                </div>
+                <!--End Login Form -->
+            </div>
+
+
+        </div>
+    </div>
+</section>

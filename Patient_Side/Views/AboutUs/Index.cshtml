@@ -1,0 +1,171 @@
+﻿@model Medical.Models.ViewModel
+@{
+    ViewData["Title"] = "About Us";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="about-section">
+    <div class="auto-container">
+        <div class="row">
+            <!-- Content Column -->
+            <div class="content-column col-lg-6 col-md-12 col-sm-12 order-2">
+                <div class="inner-column">
+                    <div class="sec-title">
+                        <span class="sub-title">OUR MEDICAL</span>
+                        <h2>We're setting Standards in Research what's more, Clinical Care.</h2>
+                        <span class="divider"></span>
+                        <p>We provide the most full medical services, so every person could have the oportunity o receive qualitative medical help.</p>
+                        <p> Our System has grown to provide a world class facility for the treatment of all your disease from the most qualified doctors.</p>
+                    </div>
+                    <div class="link-box">
+                        @*<figure class="signature"><img src="~/images/resource/signature.png" alt=""></figure>*@
+                        <a href="/AboutUs/Index" class="theme-btn btn-style-one"><span class="btn-title">More About</span></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Images Column -->
+            <div class="images-column col-lg-6 col-md-12 col-sm-12">
+                <div class="inner-column">
+                    @*<div class="video-link">
+                            <a href="https://www.youtube.com/watch?v=4UvS3k8D4rs" class="play-btn lightbox-image" data-fancybox="images"><span class="flaticon-play-button-1"></span></a>
+                        </div>*@
+                    <figure class="image-1"><img src="~/images/resource/image-1.png" alt=""></figure>
+                    <figure class="image-2"><img src="~/images/resource/image-2.png" alt=""></figure>
+                    <figure class="image-3">
+                        <span class="hex"></span>
+                        <img src="~/images/resource/image-3.png" alt="">
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="services-section">
+    <div class="auto-container">
+        <div class="sec-title text-center">
+            <span class="sub-title">OUR SERVICES</span>
+            <h2>We Care Our Patients.</h2>
+            <span class="divider"></span>
+        </div>
+
+        <div class="row">
+            <!-- Service Block -->
+            <div class="service-block col-lg-4 col-md-6 col-sm-12">
+                <div class="inner-box">
+                    <span class="icon flaticon-heartbeat"></span>
+                    <h5><a href="#">Health Check</a></h5>
+                    <div class="text">We offer extensive medical procedures to outbound & inbound patients what it is and we are very proud achievement staff.</div>
+                </div>
+            </div>
+
+            <!-- Service Block -->
+            <div class="service-block col-lg-4 col-md-6 col-sm-12">
+                <div class="inner-box">
+                    <span class="icon flaticon-surgery-room"></span>
+                    <h5><a href="#">Operation Theater</a></h5>
+                    <div class="text">We offer extensive medical procedures to outbound & inbound patients what it is and we are very proud achievement staff.</div>
+                </div>
+            </div>
+
+            <!-- Service Block -->
+            <div class="service-block col-lg-4 col-md-6 col-sm-12">
+                <div class="inner-box">
+                    <span class="icon flaticon-pharmacy"></span>
+                    <h5><a href="#">Pharmacy Support</a></h5>
+                    <div class="text">We offer extensive medical procedures to outbound & inbound patients what it is and we are very proud achievement staff.</div>
+                </div>
+            </div>
+
+            <!-- Service Block -->
+            <div class="service-block col-lg-4 col-md-6 col-sm-12">
+                <div class="inner-box">
+                    <span class="icon flaticon-transport"></span>
+                    <h5><a href="#">Ambulance Car</a></h5>
+                    <div class="text">We offer extensive medical procedures to outbound & inbound patients what it is and we are very proud achievement staff.</div>
+                </div>
+            </div>
+
+            <!-- Service Block -->
+            <div class="service-block col-lg-4 col-md-6 col-sm-12">
+                <div class="inner-box">
+                    <span class="icon flaticon-lab"></span>
+                    <h5><a href="#">Lat Tests</a></h5>
+                    <div class="text">We offer extensive medical procedures to outbound & inbound patients what it is and we are very proud achievement staff.</div>
+                </div>
+            </div>
+
+            <!-- Service Block -->
+            <div class="service-block col-lg-4 col-md-6 col-sm-12">
+                <div class="inner-box">
+                    <span class="icon flaticon-first-aid"></span>
+                    <h5><a href="#">Intensive Care</a></h5>
+                    <div class="text">We offer extensive medical procedures to outbound & inbound patients what it is and we are very proud achievement staff.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="testimonial-section-two">
+    <div class="auto-container">
+        <!-- Sec Title -->
+        <div class="sec-title text-center">
+            <span class="title">HAPPY Patient</span>
+            <h2>What Says Our Patients</h2>
+            <span class="divider"></span>
+        </div>
+
+        <div class="testimonial-outer">
+            <!-- Product Thumbs Carousel -->
+            <div class="client-thumb-outer">
+                <div class="client-thumbs-carousel owl-carousel owl-theme">
+                @foreach (var item in Model.ProductReviewList)
+                {
+                    <div class="thumb-item">
+                        <figure class="thumb-box"><img src="~/../../Patient_Image/@item.Patient_Profile" alt=""></figure>
+                        <div class="author-info">
+                            <span class="icon fa fa-quote-left"></span>
+                            <div class="author-name">@item.Patient_Name</div>
+                        </div>
+                    </div>
+                }
+                </div>
+            </div>
+
+            <div class="client-testimonial-carousel default-dots owl-carousel owl-theme">
+            @foreach (var item in Model.ProductReviewList)
+            {
+                <div class="testimonial-block">
+                    <div class="inner-box">
+                        <div class="text">@item.Product_Review_Msg</div>
+                    </div>
+                </div>
+            }
+            </div>
+        </div>
+
+        <!-- Call To Action -->
+        <div class="call-to-action">
+            <div class="inner-container">
+                <div class="content-column">
+                    <h4>We Employ The Latest Technology</h4>
+                    <h2>We Provide Online Consultancy </h2>
+                    <a href="#" class="theme-btn btn-style-three"><span class="btn-title">Take Appointment</span></a>
+                </div>
+
+                <div class="video-column">
+                    @*<div class="btn-box">
+                        <a href="https://www.youtube.com/watch?v=Fvae8nxzVz4" class="play-now" data-fancybox="gallery" data-caption=""><i class="icon flaticon-play-button" aria-hidden="true"></i><span class="ripple"></span></a>
+                        <span class="title">Watch now</span>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

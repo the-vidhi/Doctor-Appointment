@@ -1,0 +1,105 @@
+﻿@model Medical.Models.ViewModel
+@{
+    ViewData["Title"] = "Department";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="sidebar-page-container">
+    <div class="auto-container">
+        <div class="row clearfix">
+
+            <!--Content Side / Our Blog-->
+            <div class="content-side col-xl-9 col-lg-8 col-md-12 col-sm-12 order-2">
+                <div class="service-detail">
+                    <div class="images-box">
+                        <figure class="image wow fadeIn">
+                            <img src="~/../../Category_Image/@Html.DisplayFor(x=>x.category.Category_Profile)" alt="">
+                        </figure>
+                    </div>
+
+                    <div class="content-box">
+                        <div class="title-box">
+                            <h2>Department of @Html.DisplayFor(x=>x.category.Category_Name)</h2>
+                        </div>
+                        <p>@Html.DisplayFor(x => x.category.Category_Description)</p>
+                        <p>@Html.DisplayFor(x => x.category.Category_SubDescription)</p>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!--Sidebar Side-->
+            <div class="sidebar-side col-xl-3 col-lg-4 col-md-12 col-sm-12">
+                <aside class="sidebar services-sidebar">
+
+                    <!-- Category Widget -->
+                    <!--<div class="sidebar-widget categories">
+                        <div class="widget-content">-->
+                            <!-- Services Category -->
+                            <!--<ul class="services-categories">
+                                <li><a href="department-detail.html">Cardiology</a></li>
+                            </ul>
+                        </div>
+                    </div>-->
+                </aside>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Sidebar Page Container -->
+<!-- Services Section -->
+
+<section class="team-section">
+    <div class="auto-container">
+        <div class="sec-title text-center">
+            <span class="sub-title">Our Doctor</span>
+            <h2>Team of @Html.DisplayFor(x=>x.category.Category_Name)</h2>
+            <span class="divider"></span>
+        </div>
+        <div class="row">
+            @foreach (var item in Model.doctorList)
+            {
+                <!-- Team Block -->
+                <div class="team-block col-lg-3 col-md-6 col-sm-12 wow fadeInUp">
+                    <div class="inner-box">
+
+                        <figure class="image"><a href="/PatDoctor/DoctorDetails/@item.Doctor_ID"><img src="~/Doctor_Image/@item.Doctor_Profile" alt=""></a></figure>
+
+                        <div class="info-box">
+                            <h4 class="name"><a href="#">@item.Doctor_Name</a></h4>
+                            <span class="designation">@item.Doctor_Education</span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="sec-bottom-text">Don’t hesitate, contact us for better help and services <a href="/PatDoctor/DoctorList">Explore all Dr. Team</a></div>
+    </div>
+</section>
+
+<section class="services-section-two">
+    <div class="auto-container">
+        <div class="carousel-outer">
+            <div class="services-carousel owl-carousel owl-theme default-dots">
+            @foreach (var item in Model.categoryList)
+            {
+                <div class="service-block-two">
+                    <div class="inner-box">
+                        <div class="image-box">
+                            <figure class="image"><a href="/PatDoctor/DocCategory/@item.Category_ID"><img src="../../Category_Image/@item.Category_MainProfile" alt=""></a></figure>
+                        </div>
+                        <div class="lower-content">
+                            <div class="title-box">
+                                <span class="icon flaticon-heart-2"></span>
+                                <h4><a href="department-detail.html">@item.Category_Name Department</a></h4>
+                            </div>
+                            <span class="icon-right flaticon-heart-2"></span>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            </div>
+        </div>
+    </div>
+</section>

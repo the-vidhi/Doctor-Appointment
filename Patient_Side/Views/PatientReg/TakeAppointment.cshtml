@@ -1,0 +1,92 @@
+﻿@model Medical.Models.Appointment
+@{
+    ViewData["Title"] = "TakeAppointment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    <script src="/lib/jquery/dist/jquery.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var items = "<option value='0'>Select Doctor</option>";
+            $('#Doctor_ID').html(items);
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#Category_ID').change(function () {
+                var url = '@Url.Content("~/")' + "PatientReg/GetSubCategory1";
+                var ddlsource = "#Category_ID";
+                $.getJSON(url, { Category_ID: $(ddlsource).val() }, function (data) {
+                    var items = '';
+                    $("#Doctor_ID").empty();
+                    $.each(data, function (i, city) {
+                        items += "<option value='" + city.value + "'>" + city.text + "</option>";
+                    });
+                    $('#Doctor_ID').html(items);
+                });
+            });
+        });
+    </script>
+}
+
+
+<div class="model">
+    <!-- Contact Form -->
+    <div class="contact-form-two">
+        <div class="title-box">
+            <h4>Make an Appointment</h4>
+            <div class="text">We provide the most full medical services, so every person could have the <br>oportunity to receive qualitative medical help.</div>
+        </div>
+        <form method="post" asp-action="TakeAppointment">
+            <div class="row clearfix">
+                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                    <input type="text" placeholder="Your Name" required="">
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                    <input type="text" placeholder="Your Phone" required="">
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                    <input type="email" placeholder="Email Address" required="">
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                    <select asp-for="Category_ID" id="Category_ID" class="form-control"
+                            asp-items="@(new SelectList(@ViewBag.ListofState,"Category_ID", "Category_Name"))" required>
+                    </select>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                    <select class="form-control" id="Doctor_ID" name="Doctor_ID" asp-for="Doctor_ID" 
+                            asp-items="@(new SelectList(string.Empty,"Doctor_ID", "Doctor_Name"))" required>
+                    </select>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                    <input type="date" asp-for="Appointment_Date" placeholder="Select Date" required="">
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                    <select asp-for="Appointment_Time" name="time" required>
+                        <option value="10">10.00</option>
+                        <option value="12">12.00</option>
+                        <option value="18">18.00</option>
+                        <option value="20">20.00</option>
+                    </select>
+                </div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                    <textarea asp-for="Appointment_Msg" placeholder="Message" required=""></textarea>
+                </div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                    <button class="theme-btn btn-style-three small" type="submit" name="submit-form"><span class="btn-title">Submit Now</span></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

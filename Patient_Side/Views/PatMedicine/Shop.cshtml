@@ -1,0 +1,122 @@
+﻿@model cloudscribe.Pagination.Models.PagedResult<Medical.Models.Medicine>
+
+@using Medical.Models;
+
+@{
+    ViewData["Title"] = "Shop";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="sidebar-page-container">
+    <div class="auto-container">
+        <div class="row clearfix">
+
+            <!--Content Side-->
+            <div class="content-side col-lg-8 col-md-12 col-sm-12">
+                <div class="our-shop">
+                    <div class="shop-upper-box">
+                        <div class="orderby">
+                            @*<select name="orderby" id="orderby">
+                                    <option value="default">Default Sorting</option>
+                                    <option value="popularity">Sort by popularity</option>
+                                    <option value="rating">Sort by average rating</option>
+                                    <option value="date">Sort by newness</option>
+                                    <option value="price">Sort by price: low to high</option>
+                                    <option value="price-desc">Sort by price: high to low</option>
+                                </select>*@
+                            @if (@ViewBag.PriceSortParam == "Price_Desc")
+                            {
+                                <a asp-action="Shop" class="theme-btn btn-style-one" asp-route-sortOrder="@ViewBag.PriceSortParam">Sort by price: high to low</a>
+                            }
+                            else
+                            {
+                                <a asp-action="Shop" class="theme-btn btn-style-one" asp-route-sortOrder="@ViewBag.PriceSortParam">Sort by price: low to high</a>
+                            }
+                        </div>
+                        <div class="items-label">Showing all @Model.TotalItems  results</div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Shop Item -->
+                        @foreach (var item in Model.Data)
+                        {
+                            <div class="shop-item col-lg-4 col-md-6 col-sm-12">
+                                <div class="inner-box">
+                                    <form method="post" asp-action="AddToCart">
+                                    <div class="image-box">
+                                        <input type="hidden" name="Id" asp-for="@item.Medicine_ID" value="@item.Medicine_ID" />
+                                        <figure class="image"><a href="ShopDetails/@Html.DisplayFor(m => item.Medicine_ID)"><img src="~/_content/Medical/Medicine_Main_Image/@Html.DisplayFor(m => item.Medicine_Image)" alt="" /></a></figure>
+                                        <span class="onsale">Sale</span>
+                                    </div>
+                                    <div class="lower-content">                                        
+                                        <h4 class="name">@Html.DisplayFor(m => item.Medicine_Name)</h4>
+                                        <div class="price">@Html.DisplayFor(m => item.Medicine_Price)<del></del></div>
+                                        <input type="submit" class="theme-btn add-to-cart" value="Add to cart" />
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        }
+                        <!-- Shop Item -->
+                    </div>
+                    <cs-pager cs-paging-pagenumber=Model.PageNumber
+                              cs-paging-totalitems=Model.TotalItems
+                              cs-paging-pagesize=Model.PageSize
+                              cs-pagenumber-param="pagenumber"
+                              asp-controller="PatMedicine"
+                              asp-action="Shop"
+                              cs-pager-li-current-class="page-item active"
+                              cs-pager-li-other-class="page-item"
+                              cs-pager-li-non-active-class="page-item disabled"
+                              cs-pager-link-current-class="page-link"
+                              cs-pager-link-other-class="page-link"></cs-pager>
+                </div>
+            </div>
+
+            <!--Sidebar Side-->
+            <div class="sidebar-side col-lg-4 col-md-12 col-sm-12">
+                <aside class="sidebar">
+                    <!--search box-->
+                    <div class="sidebar-widget search-box">
+                        <form asp-action="Shop" method="get">
+                            <div class="form-group">
+                                <input type="search" name="searchString" value="@ViewBag.CurrentFilter" placeholder="Search.....">
+                                <button type="submit"><span class="icon fa fa-search"></span></button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Categories -->
+                    <div class="sidebar-widget category-list">
+                        <div class="sidebar-title"><h3>Categories</h3></div>
+                        <ul class="cat-list">
+                            <li>@Html.ActionLink("Covid Essentials", "Shop", "PatMedicine", new { cateSort = "Covid Essentials" })</li>
+
+                            <li>@Html.ActionLink("Skin Care", "Shop", "PatMedicine", new { cateSort = "Skin Care" })<span></span></li>
+                            <li>@Html.ActionLink("Diabetic Care", "Shop", "PatMedicine", new { cateSort = "Diabetic Care" })<span></span></li>
+                            <li>@Html.ActionLink("Ayurvedic Care", "Shop", "PatMedicine", new { cateSort = "Ayurvedic Care" })<span></span></li>
+                            <li>@Html.ActionLink("Ortho Care", "Shop", "PatMedicine", new { cateSort = "Ortho Care" })<span></span></li>
+
+
+                        </ul>
+                    </div>
+
+                    <!-- Latest News -->
+                    <!--<div class="sidebar-widget latest-news">
+                    <div class="sidebar-title"><h3>Popular Products</h3></div>
+                    <div class="widget-content">-->
+                    @*<partial name="RandomMedicinesPartial" />*@
+
+
+                    <!--</div>
+                    </div>-->
+                    <!-- Newslatters-->
+                    <!-- Instagram Widget -->
+                    <!-- Tags -->
+
+                </aside>
+            </div>
+
+        </div>
+    </div>
+</div>

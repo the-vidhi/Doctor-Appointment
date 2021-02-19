@@ -1,0 +1,181 @@
+﻿@model Medical.Models.ViewModel
+@{
+    ViewData["Title"] = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    <script src="/lib/jquery/dist/jquery.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var items = "<option value='0'>Select City</option>";
+            $('#City_ID').html(items);
+
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#State_ID').change(function () {
+                var url = '@Url.Content("~/")' + "PatMedicine/GetSubCategory";
+                var ddlsource = "#State_ID";
+                $.getJSON(url, { State_ID: $(ddlsource).val() }, function (data) {
+                    var items = '';
+                    $("#City_ID").empty();
+                    $.each(data, function (i, city) {
+                        items += "<option value='" + city.value + "'>" + city.text + "</option>";
+                    });
+                    $('#City_ID').html(items);
+                });
+            });
+        });
+    </script>
+
+}
+
+<section class="checkout-page">
+    <form method="post" asp-action="Checkout">
+        <div class="auto-container">
+            <div class="checkout-form">
+                <div class="row clearfix">
+                    <div class="column col-lg-12 col-md-12 col-sm-12">
+                        <div class="inner-column">
+                            <div class="sec-title">
+                                <h3>Ship to a different address?</h3>
+                            </div>
+
+                            <div class="row clearfix">
+
+                                <!--Form Group-->
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <div class="field-label">First Name <sup>*</sup></div>
+                                    <input type="hidden" asp-for="patient.Patient_ID" />
+                                    <input type="text" asp-for="patient.Patient_Name" name="bname" placeholder="" required>
+                                    <span asp-validation-for="bill.Patient_Name" class="text-danger"></span>
+                                </div>
+
+                                <!--Form Group-->
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <div class="field-label">Contact </div>
+                                    <input type="hidden" asp-for="patient.Patient_ID" />
+                                    <input type="text" asp-for="patient.Patient_Contact" name="bcontact" placeholder="" required>
+                                    <span asp-validation-for="bill.Bill_Contact" class="text-danger"></span>
+                                </div>
+
+                                <!--Form Group-->
+                                <div class="form-group col-md-12 col-sm-12 ">
+                                    <div class="field-label">Email</div>
+                                    <input type="text" asp-for="patient.Patient_Email" name="bemail" placeholder="" required>
+                                    <span asp-validation-for="bill.Bill_Email" class="text-danger"></span>
+                                </div>
+
+                                <!--Form Group-->
+                                <div class="form-group col-md-6 col-sm-12 ">
+                                    <div class="field-label">State</div>
+                                    <select asp-for="patient.State_ID" id="State_ID" name="State_ID" class="form-control" value="@Html.DisplayFor(m=>m.patient.State_ID)"
+                                         required   asp-items="@(new SelectList(@ViewBag.ListofState,"State_ID", "State_Name"))">
+                                    </select>
+                                    <span asp-validation-for="bill.State_ID" class="text-danger"></span>
+
+                                </div>
+                                <div class="form-group col-md-6 col-sm-12 ">
+                                    <div class="field-label">City</div>
+                                    <select class="form-control" id="City_ID" name="City_ID" asp-for="patient.City_ID" value="@Html.DisplayFor(m=>m.patient.City_ID)"
+                                       required asp-items="@(new SelectList(string.Empty,"City_ID", "City_Name"))"></select>
+                                    <span asp-validation-for="bill.City_ID" class="text-danger"></span>
+
+                                </div>
+
+                                <!--Form Group-->
+                                <div class="form-group col-md-12 col-sm-12 ">
+                                    <div class="field-label">Address</div>
+                                    <input type="text" asp-for="patient.Patient_Address" name="baddress" placeholder="Street address" required>
+                                    <span asp-validation-for="bill.Bill_Address" class="text-danger"></span>
+                                </div>
+
+                                <!--Form Group-->
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <div class="field-label">Postcode/ ZIP</div>
+                                    <input type="text" placeholder="" name="bpincode" required>
+                                    <span asp-validation-for="bill.Bill_Pincode" class="text-danger"></span>
+                                </div>
+
+                                <!--Form Group-->
+                                <div class="form-group col-md-12 col-sm-12 ">
+                                    <div class="field-label">Other Notes</div>
+                                    <textarea class="" placeholder="Notes about your order,e.g. special notes for delivery."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="order-box">
+                <div class="sec-title">
+                    <h3>Your Order</h3>
+                </div>
+                @{
+                    decimal s = 0;
+                    int index = 1;
+                }
+            <div class="table-outer">
+                <table class="default-table">
+
+                    <tr>
+                        <td class="col title-box clearfix">Product</td>
+                        <td class="col title-box clearfix">Price</td>
+                        <td class="col title-box clearfix">Quantity</td>
+                        <td class="col title-box clearfix">Total</td>
+                    </tr>
+
+                    @foreach (var item in Model.cartList)
+                    {
+                        s = s + int.Parse(item.Medicine_Price) * item.Cart_Qty;
+                <tr>
+                    <td class="clearfix"><strong>@item.Medicine_Name</strong>
+                    <td class="clearfix">@item.Medicine_Price</td>
+                    <td class="clearfix">@item.Cart_Qty</td>
+                    <td class="clearfix"><strong>@(int.Parse(item.Medicine_Price) * item.Cart_Qty)</strong>@{ index++;}</td>
+                    <input type="hidden" asp-for="orderMedical.Price" value="@(int.Parse(item.Medicine_Price) * item.Cart_Qty)" name="ProdTotal" />
+                </tr>
+                    }
+                </table>
+            </div>
+                <ul>
+                    <li class="clearfix">SUBTOTAL<span>@s</span></li>
+                    <input type="hidden" asp-for="order.Order_Amount" value="@s" name="OrdAmt" />
+                    <li class="clearfix">SHIPPING<span class="free">Free Shipping</span></li>
+                    <li class="clearfix">TOTAL<span>@s</span></li>
+                </ul>
+            </div>
+            <!--End Order Box-->
+            <!--Payment Box-->
+            <div class="payment-box">
+                <div class="upper-box">
+                    <!--Payment Options-->
+                    <div class="payment-options">
+                        <ul>
+                            <li>
+                                <div class="radio-option">
+                                    <input type="radio" asp-for="order.Payment_Type_ID" value="1" name="payment-group" id="payment-2" checked>
+                                    <label for="payment-2"><strong>COD</strong><span class="small-text">You can make your payment at time of Product Delivery.</span></label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="radio-option">
+                                    <input type="radio" asp-for="order.Payment_Type_ID" value="3" name="payment-group" id="payment-1">
+                                    <label for="payment-1"><strong>PayPal</strong><span class="small-text">Make your payment directly through PayPal Account.</span></label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="lower-box">
+                    @*<a href="#" class="theme-btn btn-style-one"><span class="btn-title">Place Order</span></a>*@
+                    <input type="submit" class="theme-btn btn-style-one" value="Checkout" />
+                </div>
+            </div>
+            <!--End Payment Box-->
+        </div>
+    </form>
+</section>
+

@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Medical.Models.Medicine>
+@foreach (var item in Model)
+{
+<article class="post">
+    <div class="post-thumb"><a href="ShopDetails/@item.Medicine_ID"><img src="~/Medicine_Main_Image/@item.Medicine_Image" alt=""></a></div>
+    <h5>@item.Medicine_Name</h5>
+    <div class="price">@item.Medicine_Price</div>
+    <div class="rating"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></div>
+</article>                            
+}

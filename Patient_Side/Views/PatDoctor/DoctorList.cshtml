@@ -1,0 +1,48 @@
+﻿@model Medical.Models.ViewModel
+
+@{
+    ViewData["Title"] = "Dedicated Doctor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="team-section-two alternate alternate2">
+    <div class="auto-container">
+        <div class="row">
+            <!-- Team Block -->
+            @foreach (var item in Model.doctorList)
+            {
+            <div class="team-block-two col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="400ms">
+                <div class="inner-box">
+                    <div class="image-box">
+                        <figure class="image"><a href="/PatDoctor/DoctorDetails/@item.Doctor_ID"><img src="~/Doctor_Image/@item.Doctor_Profile" alt=""></a></figure>
+                        
+                    </div>
+                    <div class="info-box">
+                        <h5 class="name"><a href="">@item.Doctor_Name</a></h5>
+                        <span class="designation">@item.Doctor_Degree</span>
+                    </div>
+                </div>
+            </div>
+            }
+            <!-- Team Block -->
+        </div>
+
+        <div class="sec-bottom-text">Don’t hesitate, contact us for better help and services. <a href="#">Explore all Dr. Team</a></div>
+    </div>
+</section>
+<section class="testimonial-section-two">
+    <div class="auto-container">
+        <!-- Sec Title -->
+        <div class="sec-title text-center">
+            <span class="title">HAPPY Patient</span>
+            <h2>What Says Our Patients</h2>
+            <span class="divider"></span>
+        </div>
+
+        <partial name="DoctorReviewPartial" />
+
+        <!-- Call To Action -->
+        
+    </div>
+</section>
+

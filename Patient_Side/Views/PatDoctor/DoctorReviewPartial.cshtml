@@ -1,0 +1,32 @@
+﻿@model Medical.Models.ViewModel
+<div class="testimonial-outer">
+    <!-- Product Thumbs Carousel -->
+    <div class="client-thumb-outer">
+        <div class="client-thumbs-carousel owl-carousel owl-theme">
+            @foreach (var item in Model.reviewList)
+            {
+                <div class="thumb-item">
+                    <figure class="thumb-box"><img src="~/Patient_Image/@item.Patient_Profile" alt=""></figure>
+                    <div class="author-info">
+                        <span class="icon fa fa-quote-left"></span>
+                        <div class="author-name">@item.Patient_Name</div>
+                        <div class="designation">@item.City_Name</div>
+                    </div>
+                </div>
+            }
+            </div>        
+    </div>
+
+    <!-- Client Testimonial Carousel -->
+    <div class="client-testimonial-carousel default-dots owl-carousel owl-theme">
+        @foreach (var item in Model.reviewList)
+        {
+        <!--Testimonial Block -->
+        <div class="testimonial-block">
+            <div class="inner-box">
+                <div class="text">@item.Review_Msg</div>
+            </div>
+        </div>
+        }
+    </div>
+</div>

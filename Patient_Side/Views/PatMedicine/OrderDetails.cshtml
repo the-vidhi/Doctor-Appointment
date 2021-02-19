@@ -1,0 +1,52 @@
+﻿@model Medical.Models.ViewModel
+@{
+    ViewData["Title"] = "Order Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="cart-section">
+    <div class="auto-container">
+        <!--Cart Outer-->
+        <div class="cart-outer">
+            <div class="table-outer">
+                <table class="default-table">
+                    <thead class="cart-header">
+                        <tr>
+                            <th>Product</th>
+                            <th class="price">Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model.orderMedicalList)
+                        {
+                                <tr>
+                                    <td><h4 class="prod-title">@item.Medicine_Name</h4></td>
+                                    <td class="sub-total">@item.Medicine_Price</td>
+                                    <td>@item.Order_Qty</td>
+
+                                    @*<td class="total">
+                                        @(int.Parse(item.Price) * item.Order_Qty)
+                                    </td>*@
+				    <td>@item.Price</td>
+                                    
+                                </tr>
+                        }
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>@Html.DisplayFor(x=>x.orderMedical.Order_Amount)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        
+    </div>
+</section>
+

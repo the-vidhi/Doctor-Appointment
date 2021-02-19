@@ -1,0 +1,126 @@
+﻿@model Medical.Models.ViewModel
+@{
+    ViewData["Title"] = "Product Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="sidebar-page-container">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <!--Content Side-->
+            <div class="content-side col-lg-8 col-md-12 col-sm-12">
+                <div class="shop-single">
+                    <div class="product-details">
+                        <!--Basic Details-->
+                        <div class="basic-details">
+                            <div class="row clearfix">
+                                <div class="image-column col-md-6 col-sm-12">
+                                    <figure class="image-box"><a href="~/Medicine_Main_Image/@Html.DisplayFor(m=>m.medicine.Medicine_Image)" class="lightbox-image" title="Image Caption Here"><img src="images/resource/products/product-sinlge.jpg" alt=""></a></figure>
+                                </div>
+                                <div class="info-column col-md-6 col-sm-12">
+                                    <div class="details-header">
+                                        <h4>@Html.DisplayFor(m => m.medicine.Medicine_Name)</h4>
+                                        <div class="rating">
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                        </div>
+                                        <a class="reviews" href="#">( 3 Customer Reviews )</a>
+                                        <div class="item-price">@Html.DisplayFor(m => m.medicine.Medicine_Price)<del></del></div>
+                                    </div>
+
+                                    <div class="text">
+                                        <p>@Html.DisplayFor(m => m.medicine.Medicine_Brand)</p>
+                                        <p>@Html.DisplayFor(m => m.medicine.Medicine_Strip_Tablets)</p>
+                                        <p>@Html.DisplayFor(m => m.medicine.Medicine_Content)</p>
+                                    </div>
+                                    <div class="other-options clearfix">
+                                        <div class="item-quantity"><input class="quantity-spinner" type="text" value="2" name="quantity"></div>
+                                        <button type="button" class="theme-btn btn-style-one add-to-cart"><span class="btn-title">Add To Cart</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Basic Details-->
+                        <!--Product Info Tabs-->
+                        <div class="product-info-tabs">
+                            <!--Product Tabs-->
+                            <div class="prod-tabs tabs-box">
+
+                                <!--Tab Btns-->
+                                <ul class="tab-btns tab-buttons clearfix">
+                                    <li data-tab="#prod-details" class="tab-btn">Descripton</li>
+                                    <li data-tab="#prod-reviews" class="tab-btn active-btn">Review (3)</li>
+                                </ul>
+
+                                <!--Tabs Container-->
+                                <div class="tabs-content">
+
+                                    <!--Tab-->
+                                    <div class="tab" id="prod-details">
+                                        <div class="content">
+                                            <h3>Product Descripton</h3>
+                                            <p>@Html.DisplayFor(m => m.medicine.Medicine_Content)</p>
+                                            <p>@Html.DisplayFor(m => m.medicine.Medicine_Description)</p>
+                                        </div>
+                                    </div>
+
+                                    <!--Tab-->
+                                    <div class="tab active-tab" id="prod-reviews">
+                                        <h2 class="title">3 Reviews For Patient Ninja</h2>
+                                        <!--Reviews Container-->
+                                       <partial name="ProductReviewAddPartial" /> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End Product Info Tabs-->
+                    </div>
+                </div>
+            </div>
+
+            <!--Sidebar Side-->
+            <div class="sidebar-side col-lg-4 col-md-12 col-sm-12">
+                <aside class="sidebar">
+                    <!--search box-->
+                    <div class="sidebar-widget search-box">
+                        <form method="post" action="blog.html">
+                            <div class="form-group">
+                                <input type="search" name="search-field" value="" placeholder="Search....." required="">
+                                <button type="submit"><span class="icon fa fa-search"></span></button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Categories -->
+                    <div class="sidebar-widget category-list">
+                        <div class="sidebar-title"><h3>Categories</h3></div>
+                        <ul class="cat-list">
+                            <li><a href="#">Procedures <span>(06)</span></a></li>
+                            <li><a href="#">Transplantation <span>(02)</span></a></li>
+                            <li class="active"><a href="#">Management <span>(05)</span></a></li>
+                            <li><a href="#">Healthcare Tips <span>(25)</span></a></li>
+                            <li><a href="#">Uncategorized <span>(04)</span></a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Latest News -->
+                    <div class="sidebar-widget latest-news">
+                        <div class="sidebar-title"><h3>Popular Products</h3></div>
+                        <div class="widget-content">
+                            <!--<partial name="RelatedMedicinesPartial" />-->
+                        </div>
+                    </div>
+
+                    <!-- Newslatters-->                  
+                    <!-- Instagram Widget -->
+                    <!-- Tags -->
+                    
+                </aside>
+            </div>
+        </div>
+    </div>
+</div>
+

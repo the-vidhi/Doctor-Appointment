@@ -1,0 +1,202 @@
+﻿@model Medical.Models.ViewModel
+
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+        <script src="/lib/jquery/dist/jquery.js"></script>
+
+        <script type="text/javascript">
+        $(document).ready(function () {
+        var items = "<option value='0'>Select City</option>";
+            $('#City_ID').html(items);
+
+    });
+        </script>
+
+        <script type="text/javascript">
+        $(document).ready(function () {
+            $('#State_ID').change(function () {
+                var url = '@Url.Content("~/")' + "PatientReg/GetSubCategory";
+                var ddlsource = "#State_ID";
+                $.getJSON(url, { State_ID: $(ddlsource).val() }, function (data) {
+                    var items = '';
+                    $("#City_ID").empty();
+                    $.each(data, function (i, city) {
+                        items += "<option value='" + city.value + "'>" + city.text + "</option>";
+                    });
+                    $('#City_ID').html(items);
+                });
+            });
+        });
+        </script>
+
+}
+
+<section class="terms-and-condition">
+    <div class="auto-container">
+        <div class="tnc-tabs tabs-box">
+            <div class="row">
+                <div class="column col-xl-3 col-lg-4 col-md-12 col-sm-12">
+                    <!--Tab Btns-->
+                    <ul class="tab-buttons">
+                        <li data-tab="#tab-a" class="tab-btn">Welcome Text</li>
+                        <li data-tab="#tab-b" class="tab-btn">Your Profile</li>
+                        <li data-tab="#tab-c" class="tab-btn">Your Orders</li>
+                        <li data-tab="#tab-e" class="tab-btn">Your Appointments</li>
+                        @*<li data-tab="#tab-f" class="tab-btn">Security</li>
+                            <li data-tab="#tab-g" class="tab-btn">Privacy Policy Update</li>*@
+                    </ul>
+                </div>
+
+                <div class="column col-xl-9 col-lg-8 col-md-12 col-sm-12">
+                    <div class="tabs-content">
+                        <div class="tab" id="tab-a">
+                            <h4>Welcome Text</h4>
+                            <p>Glad to See you're using our services</p>
+                            <p>We will try to provide you best of the best services</p>
+                            <p>Thank You !!</p>
+                        </div>
+
+                        <!--Tab-->
+                        <div class="tab" id="tab-b">
+                            <h4>Manage Profile</h4>
+                            <div class="thumb-item">
+                                <figure class="thumb-box"><img src="~/../../Patient_Image/@Html.DisplayFor(x=>x.patient.Patient_Profile)" alt=""></figure>
+                                <div class="author-info">
+                                    <span class="icon fa fa-quote-left"></span>
+                                    <div class="author-name">@Html.DisplayFor(x=>x.patient.Patient_Name)</div>
+                                </div>
+                            </div>
+                            <div class="column col-lg-12 col-md-12 col-sm-12">
+                                <div class="login-form register-form">
+                                    <h2>Register</h2>
+                                    <!--Login Form-->
+                                    <form method="post" asp-action="ProfileEdit" enctype="multipart/form-data" asp-controller="PatientReg">
+                                        <div class="form-group">
+                                            <label>User Name</label>
+                                            <input type="hidden" asp-for="patient.Patient_ID" />
+                                            <input type="text" asp-for="patient.Patient_Name" name="pname" placeholder="Your Name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Address</label>
+                                            <input type="text" asp-for="patient.Patient_Address" name="paddress" placeholder="Pink Streer=t" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <label for="state">Select State : </label>
+                                                    <select asp-for="patient.State_ID" id="State_ID" class="form-control" name="State_ID" required
+                                                            asp-items="@(new SelectList(@ViewBag.ListofState,"State_ID", "State_Name"))">
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label for="state">Select City : </label>
+                                                    <select class="form-control" id="City_ID" name="City_ID" asp-for="patient.City_ID" required
+                                                            asp-items="@(new SelectList(string.Empty,"City_ID", "City_Name"))"></select>
+                                                    <span asp-validation-for="patient.City_Name" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Contact</label>
+                                            <input type="text" asp-for="patient.Patient_Contact" name="pcontact" placeholder="8787878787" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Email Address</label>
+                                            <input type="email" asp-for="patient.Patient_Email" name="pemail" placeholder="Your Email" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Choose Profile : </label>
+                                            <input type="file" name="fileobj" multiple asp-for="patient.Patient_Profile" class="form-control" />
+                                        </div>
+                                        <div class="form-group text-right">
+                                            <button class="theme-btn btn-style-three" type="submit" name="submit-form"><span class="btn-title">Save</span></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Tab-->
+                        <div class="tab" id="tab-c">
+                            <h4>Orders</h4>
+                            <table class="cart-table">
+                                <thead class="cart-header">
+                                    <tr>
+                                        <th class="prod-column">Order Date</th>
+                                        <th class="price">Order Amount</th>
+                                        <th>Order Status</th>
+                                        <th>Details</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.orderList)
+                                    {
+                                    <tr>
+                                        <input type="hidden" asp-for="@item.Order_ID" name="Id" value="@item.Order_ID" />
+                                        <td><h4 class="prod-title">@item.Order_Date</h4></td>
+                                        <td class="sub-total">@item.Order_Amount</td>
+                                        <td class="">@item.Order_Status</td>
+                                        <td><a href="../../PatMedicine/OrderDetails/@item.Order_ID">View</a></td>
+                                        
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!--Tab-->
+                        
+
+                        <!--Tab-->
+                        <div class="tab" id="tab-e">
+                            <h4>Appointments</h4>
+                            <table class="cart-table">
+                                <thead class="cart-header">
+                                    <tr>
+                                        <th class="prod-column">Appointment Date</th>
+                                        <th class="price">Appointment Status</th>
+                                        <th>Doctor</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.appointmentList)
+                                    {
+                                        <tr>
+                                            <input type="hidden" asp-for="@item.Appointment_ID" name="Id" value="@item.Appointment_ID" />
+                                            <td><h4 class="prod-title">@item.Appointment_Date</h4></td>
+                                            <td class="sub-total">@item.Appointment_Status</td>
+                                            <td class="">@item.Doctor_Name</td>                                            
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!--Tab-->
+                        <!--<div class="tab" id="tab-f">
+                            <h4>Security</h4>
+                            <p>Searcys St Pancras' adored Champagne bar is famously the longest in Europe. Here, guests can enjoy panoramic views of the magnificent station. For those looking to enjoy a glass of something special, the menu showcases a variety of Champagne and sparkling wines from around the world, including nine options by the glass.</p>
+                            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa.</p>
+                            <h5>Our Terms</h5>
+                            <p>Searcys St Pancras' adored Champagne bar is famously the longest in Europe. Here, guests can enjoy panoramic views of the magnificent station. For those looking to enjoy a glass of something special, the menu showcases a variety of Champagne and sparkling wines from around the world, including nine options by the glass.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa.</p>
+                        </div>-->
+
+                        <!--Tab-->
+                        <!--<div class="tab" id="tab-g">
+                            <h4>Privacy Policy Update</h4>
+                            <p>Searcys St Pancras' adored Champagne bar is famously the longest in Europe. Here, guests can enjoy panoramic views of the magnificent station. For those looking to enjoy a glass of something special, the menu showcases a variety of Champagne and sparkling wines from around the world, including nine options by the glass.</p>
+                            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa.</p>
+                            <h5>Our Terms</h5>
+                            <p>Searcys St Pancras' adored Champagne bar is famously the longest in Europe. Here, guests can enjoy panoramic views of the magnificent station. For those looking to enjoy a glass of something special, the menu showcases a variety of Champagne and sparkling wines from around the world, including nine options by the glass.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa.</p>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Medical.Models.Cart>
+@{
+    ViewData["Title"] = "Shopping Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if(Model == null)
+{
+    <h4>No Data</h4>
+}
+<section class="cart-section">
+    @{
+        decimal s = 0;
+        int index = 1;
+    }
+    <div class="auto-container">
+        <!--Cart Outer-->
+        <div class="cart-outer">
+            <form method="post" asp-action="CartUpdate">
+                <div class="table-outer">
+                    <table class="cart-table">
+                        <thead class="cart-header">
+                            <tr>
+                                <th>Preview</th>
+                                <th class="prod-column">product</th>
+                                <th class="price">Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                s = s + int.Parse(item.Medicine_Price) * item.Cart_Qty;
+                                if (item == null)
+                                {
+                                    <tr><td>Your cart is empty</td></tr>
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <input type="hidden" asp-for="@item.Cart_ID" name="Id" value="@item.Cart_ID" />
+                                        <td class="prod-column">
+                                            <div class="column-box">
+                                                <figure class="prod-thumb"><a href="#"><img src="~/_content/Medical/Medicine_Main_Image/@item.Medicine_Image" alt=""></a></figure>
+                                            </div>
+                                        </td>
+                                        <input type="hidden" asp-for="@item.Medicine_ID" name="MedId" value="@item.Medicine_ID" />
+                                        <td><h4 class="prod-title">@item.Medicine_Name</h4></td>
+                                        <td class="sub-total">@item.Medicine_Price</td>
+                                        <td>
+                                           
+                                                @Html.ActionLink("+", "Increase", new { item_code = item.Cart_ID })
+                                            <h5>@item.Cart_Qty</h5>    
+                                            @Html.ActionLink("-", "Decrease", new { item_code = item.Cart_ID })
+                                            
+                                        </td>
+
+                                        <td class="total">
+                                            @(int.Parse(item.Medicine_Price) * item.Cart_Qty)
+                                            @{ index++;}
+                                        </td>
+                                        <td><a href="CartDelete/@item.Cart_ID" class="remove-btn"><span class="fa fa-times"></span></a></td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </form>
+        </div>
+
+        <div class="row justify-content-between">
+            <div class="column pull-left col-lg-5 col-md-6 col-sm-12">
+                <div class="shipping-block">
+                    <div class="inner-box">
+
+                        <!-- Shipping Form -->
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="column pull-right col-lg-6 col-md-6 col-sm-12">
+                <!--Totals Table-->
+                <ul class="totals-table">
+                    <li><h3>Cart Totals</h3></li>
+                    <li class="clearfix total"><span class="col">Sub Total</span><span class="col price"> @s </span></li>
+                    <li class="clearfix total"><span class="col">Total</span><span class="col price">@s</span></li>
+                    <li class="text-right"><a href="/PatMedicine/Checkout"><button type="submit" asp-action="Checkout" class="theme-btn proceed-btn">Proceed to Checkout</button></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+

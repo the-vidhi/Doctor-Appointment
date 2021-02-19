@@ -1,0 +1,54 @@
+﻿@model Medical.Models.Career
+
+@{
+    ViewData["Title"] = "Career";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="login-section">
+    <div class="auto-container">
+        <div class="row clearfix">
+
+
+            <div class="column col-lg-12 col-md-12 col-sm-12">
+                <!-- Register Form -->
+                <div class="login-form register-form">
+                    <h2>Career</h2>
+                    <!--Login Form-->
+                    <form asp-action="Create" method="post" enctype="multipart/form-data" asp-controller="PatCareer">
+                        <div class="form-group">
+                            <label>Name : </label>
+                            <input type="text" asp-for="Candidate_Name" placeholder="Your Name" required>
+                            <span asp-validation-for="Candidate_Name" class="text-danger"></span>
+                            <span class="messages"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Email : </label>
+                            <input type="text" asp-for="Candidate_Email" placeholder="Your Email" required>
+                            <span asp-validation-for="Candidate_Email" class="text-danger"></span>
+                            <span class="messages"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Contact : </label>
+                            <input type="text" asp-for="Candidate_Contact" placeholder="+91-0000000000" required>
+                            <span asp-validation-for="Candidate_Contact" class="text-danger"></span>
+                            <span class="messages"></span>
+                        </div>
+                       
+                        <div class="form-group">
+                            <label>Select Resume : </label>
+                            <input type="file" name="fileobj"  asp-for="Candidate_Resume" class="form-control" />
+                            <span asp-validation-for="Candidate_Resume" class="text-danger"></span>
+                            <span class="messages"></span>
+                        </div>
+                        <div class="form-group text-right">
+                            <button class="theme-btn btn-style-three" type="submit" name="submit-form"><span class="btn-title">Submit</span></button>
+                        </div>
+                    </form>
+                </div>
+                <!--End Register Form -->
+            </div>
+        </div>
+    </div>
+</section>

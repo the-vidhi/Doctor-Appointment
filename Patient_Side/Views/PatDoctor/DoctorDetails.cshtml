@@ -1,0 +1,152 @@
+﻿@model Medical.Models.ViewModel
+@{
+    ViewData["Title"] = "DoctorDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="doctor-detail-section">
+    <div class="auto-container">
+        <div class="row">
+            <!-- Content Side -->
+            <div class="content-side col-lg-8 col-md-12 col-sm-12 order-2">
+                <div class="docter-detail">
+                    <h3 class="name">@Html.DisplayFor(model=>model.doctor.Doctor_Name)</h3>
+                    <span class="designation">@Html.DisplayFor(model => model.doctor.Doctor_Degree)</span>
+                    <div class="text">After graduating from West Virginia University Medical School, Dr.@Html.DisplayFor(model => model.doctor.Doctor_Name) completed a two-year fellowship in sports medicine at Akron Children’s Hospital. During his training at Akron, Dr. Emily Haden Alex was team physician for the University of Akron and Walsh University.</div>
+                    <ul class="doctor-info-list">
+                        <li>
+                            <strong>Speciality</strong>
+                            <p>@Html.DisplayFor(model => model.category.Category_Name)</p>
+                        </li>
+                        <li>
+                            <strong>Education</strong>
+                            <p>@Html.DisplayFor(model => model.doctor.Doctor_Education)</p>
+                        </li>
+                        <li>
+                            <strong>Experience</strong>
+                            <p>@Html.DisplayFor(model => model.doctor.Doctor_Experience)</p>
+                        </li>
+                        <li>
+                            <strong>Address</strong>
+                            <p>@Html.DisplayFor(model => model.clinic.Clinic_Address)</p>
+                            <p>@Html.DisplayFor(model => model.clinic.Clinic_Pincode)</p>
+                            <p>@Html.DisplayFor(model => model.clinic.City_Name)</p>
+                            <p>@Html.DisplayFor(model => model.clinic.State_Name)</p>
+                        </li>
+                        <li>
+                            <strong>Phone</strong>
+                            <p>@Html.DisplayFor(model => model.clinic.Clinic_Contact)</p>
+                        </li>
+                        <li>
+                            <strong>Email</strong>
+                            <p>@Html.DisplayFor(model => model.doctor.Doctor_Email)</p>
+                        </li>
+                        
+                    </ul>
+                </div>
+
+                <div class="appointment-form default-form">
+                    <div class="sec-title">
+                        <span class="sub-title">Online Appoinment</span>
+                        <h2>Make An Appointment</h2>
+                        <span class="divider"></span>
+                    </div>
+
+                    <!--Comment Form-->
+                    <form method="post" asp-action="TakeAppointment">
+                        <div class="row">
+                            <div class="form-group col-lg-6 col-md-12">
+                                <input type="hidden" name="Id" asp-for="doctor.Doctor_ID" />
+                                <input type="text" placeholder="Your Name">
+                            </div>
+
+                            <div class="form-group col-lg-6 col-md-12">
+                                <input type="text" name="phone" placeholder="Your Phone">
+                            </div>
+
+                            <div class="form-group col-lg-12 col-md-12">
+                                <input type="email" name="email" placeholder="Your Email *">
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                <input type="date" asp-for="appointment.Appointment_Date" placeholder="Select Date" required="">
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                <select asp-for="appointment.Appointment_Time" required>
+                                    <option value="10-12">10.00 - 12.00</option>
+                                    <option value="12-14">12.00 - 14.00</option>
+                                    <option value="16-18">16.00 - 18.00</option>
+                                    <option value="18-20">18.00 - 20.00</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-lg-12 col-md-12">
+                                <textarea asp-for="appointment.Appointment_Msg" placeholder="Tell us about Patient"></textarea>
+                            </div>
+
+                            <div class="form-group col-lg-12 col-md-12">
+                                <button class="theme-btn btn-style-three small" type="submit" name="submit-form"><span class="btn-title">Submit Now</span></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Sidebar Side -->
+            <div class="sidebar-side col-lg-4 col-md-12 col-sm-12">
+                <div class="sidebar">
+                    <!-- Team Block -->
+                    <div class="team-block wow fadeInUp">
+                        <div class="inner-box">
+                            <figure class="image"><img src="~/Doctor_Image/@Html.DisplayFor(model=>model.doctor.Doctor_Profile)" alt=""></figure>
+                        </div>
+                    </div>
+
+                    <!-- Doctor Availability -->
+                    <div class="docter-availability">
+                        <div class="inner">
+                            <div class="sec-title">
+                                <span class="sub-title">Timining</span>
+                                <h2>Availability</h2>
+                                <span class="divider"></span>
+                                <div class="text">
+                                     <strong>@Html.DisplayFor(model=>model.clinic.Clinic_Name)</strong>                               
+                                     You can Come at our clinic between Following Timings
+                                </div>
+                            </div>
+                            <ul class="timing-list-two">
+                                <li>Monday - Friday <span>08:00 - 20:00</span></li>
+                                <li>Saturday <span>09:00 - 18:00</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="team-section">
+    <div class="auto-container">
+        <div class="row">
+            <!-- Team Block -->
+            
+            @*@foreach (var item in Model.doctorList)
+            {
+             
+            <div class="team-block col-lg-3 col-md-6 col-sm-12 wow fadeInUp">
+                <div class="inner-box">
+                    <figure class="image"><img src="~/../../Doctor_Image/@item.Doctor_Profile" alt=""></figure>
+                    <div class="info-box">
+                        <h4 class="name"><a href="doctor-detail.html">@item.Doctor_Name</a></h4>
+                        <span class="designation">@item.Doctor_Education</span>
+                    </div>
+                </div>
+            </div>
+            }*@
+
+
+        </div>
+    </div>
+</section>
+
