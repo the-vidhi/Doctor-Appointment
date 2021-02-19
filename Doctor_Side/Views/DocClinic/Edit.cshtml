@@ -1,0 +1,134 @@
+﻿@model Doctor_Side.Models.DocClinic
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    <script src="/lib/jquery/dist/jquery.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var items = "<option value='0'>---Select City---</option>";
+            $('#City_ID').html(items);
+
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#State_ID').change(function () {
+                var url = '@Url.Content("~/")' + "DocClinic/GetSubCategory";
+                var ddlsource = "#State_ID";
+                $.getJSON(url, { State_ID: $(ddlsource).val() }, function (data) {
+                    var items = '';
+                    $("#City_ID").empty();
+                    $.each(data, function (i, city) {
+                        items += "<option value='" + city.value + "'>" + city.text + "</option>";
+                    });
+                    $('#City_ID').html(items);
+                });
+            });
+
+
+        });
+    </script>
+}
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    <h4 class="mb-0 font-size-18">Edit Clinic</h4>
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="../Home1/Index">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Edit Clinic</li>
+                        </ol>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Basic Information</h4>
+                        <p class="card-title-desc">Fill all information below</p>
+                        <form asp-action="Edit" method="post" enctype="multipart/form-data" asp-controller="DocClinic">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input type="hidden" asp-for="Clinic_ID" />
+                                        <label for="name">Clinic Name : </label>
+
+                                        <input class="form-control" asp-for="Clinic_Name" placeholder="Enter Clinic Name ...">
+                                        <span asp-validation-for="Clinic_Name" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">Clinic Address : </label>
+                                        <input class="form-control" asp-for="Clinic_Address" placeholder="Enter Clinic Address ...">
+                                        <span asp-validation-for="Clinic_Address" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">Pincode : </label>
+                                        <input class="form-control" asp-for="Clinic_Pincode" placeholder="Enter Pincode ...">
+                                        <span asp-validation-for="Clinic_Pincode" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <label for="state">Select State : </label>
+                                                <select asp-for="State_ID" id="State_ID" class="form-control"
+                                                        asp-items="@(new SelectList(@ViewBag.ListofState,"State_ID", "State_Name"))">
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-6">
+
+                                                <label for="state">Select City : </label>
+                                                <select class="form-control" id="City_ID" name="City_ID" asp-for="City_ID"
+                                                        asp-items="@(new SelectList(string.Empty,"City_ID", "City_Name"))"></select>
+                                                <span asp-validation-for="City_Name" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">Clinic Contact : </label>
+                                        <input class="form-control" asp-for="Clinic_Contact" placeholder="Enter Clinic Contact ...">
+                                        <span asp-validation-for="Clinic_Contact" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label"> Clinic Photo : </label>
+                                        <input type="file" name="fileobj" asp-for="Clinic_Profile" class="form-control" />
+                                        <span asp-validation-for="Clinic_Profile" class="text-danger"></span>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group align-right">
+                                        @*<label asp-for="Clinic_Profile" class="control-label"></label>*@
+                                        <img src="~/_content/Medical//Clinic_Images/@Html.DisplayFor(model=>model.Clinic_Profile)" width="200" class="rounded-circle" />
+                                        <span asp-validation-for="Clinic_Profile" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light">EDIT</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

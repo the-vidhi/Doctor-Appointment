@@ -1,0 +1,167 @@
+﻿@model IEnumerable<Doctor_Side.Models.DocAppointment>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    <h4 class="mb-0 font-size-18">Appointment List</h4>
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="../Home1/Index">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Appointment List </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="text-sm-right">
+                                    <!--<button type="button" class="btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2"><i class="mdi mdi-plus mr-1"></i><a class="mr-1" href="vendor_product_add.php"> Add New Product</a></button>-->
+                                    @*<a class="btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2" asp-action="Create" role="button">
+                                        <i class="mdi mdi-plus mr-1"></i>Add Clinic
+                                    </a>*@
+                                </div>
+                            </div><!-- end col-->
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-centered table-nowrap">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>
+                                            View
+                                        </th>
+                                        <th>
+                                            Patient Photo
+                                        </th>
+                                        <th>
+                                            Patient Name
+                                        </th>
+                                        <th>
+                                            Appointment Date
+                                        </th>
+                                        <th>
+                                            Appointment Status
+                                        </th>
+                                        <th>
+                                            Appointment Message
+                                        </th>
+                                        <th>Action</th>
+                                        <th></th>
+                                        <th></th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                    <tr>
+                                        <td>
+                                            <a asp-action="View" asp-controller="DocReview" asp-route-id="@item.Patient_ID" type="button" class="btn btn-primary btn-rounded waves-effect waves-light mb-2 mr-2">
+                                                <i class="mdi mdi-eye mr-1"></i>
+
+                                            </a>
+                                        </td>
+                                        
+                                        <td>
+                                            <img src="~/_content/Medical/Patient_Image/@item.Patient_Profile" height="50" width="50" class="rounded-circle" />
+                                        </td>
+                                        <td>
+                                            @item.Patient_Name
+                                        </td>
+                                        <td>
+                                            @item.Appointment_Date
+                                        </td>
+
+                                        <td>
+                                            @item.Appointment_Status
+                                        </td>
+                                        <td>
+                                            @item.Appointment_Msg
+                                        </td>
+
+                                        @if (item.Appointment_Status == "Requested")
+                                        {
+                                            <td>
+                                                <a href="AppConfirm/@item.Appointment_ID" type="button" class="btn btn-info btn-rounded waves-effect waves-light mb-2 mr-2">
+                                                    <i class="mdi mdi-account-check mr-1"></i>
+                                                    Confirm
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="AppWait/@item.Appointment_ID" type="button" class="btn btn-warning btn-rounded waves-effect waves-light mb-2 mr-2">
+                                                    <i class="mdi mdi-account-check mr-1"></i>
+                                                    Wait
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="AppRefuse/@item.Appointment_ID" type="button" class="btn btn-pink btn-rounded waves-effect waves-light mb-2 mr-2">
+                                                    <i class="mdi mdi-close mr-1"></i>
+                                                    Refuse
+                                                </a>
+                                            </td>
+                                        }
+                                        @if (item.Appointment_Status == "Waiting")
+                                        {
+                                            <td>
+                                                <a href="AppConfirm/@item.Appointment_ID" type="button" class="btn btn-info btn-rounded waves-effect waves-light mb-2 mr-2">
+                                                    <i class="mdi mdi-account-check mr-1"></i>
+                                                    Confirm
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="AppRefuse/@item.Appointment_ID" type="button" class="btn btn-pink btn-rounded waves-effect waves-light mb-2 mr-2">
+                                                    <i class="mdi mdi-close mr-1"></i>
+                                                    Refuse
+                                                </a>
+                                            </td>
+                                            <td></td>
+                                        }
+                                        @if (item.Appointment_Status == "Confirm")
+                                        {
+                                            <td>
+                                                <a href="AppRefuse/@item.Appointment_ID" type="button" class="btn btn-pink btn-rounded waves-effect waves-light mb-2 mr-2">
+                                                    <i class="mdi mdi-close mr-1"></i>
+                                                    Cancle
+                                                </a>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                        }
+
+                                    </tr>
+                                    }
+                                </tbody>
+
+                            </table>
+                            @*<div class="alert alert-danger text-center mb-4" role="alert">
+                                    @ViewBag.Message
+                                </div>*@
+                        </div>
+
+
+                        <ul class="pagination pagination-rounded justify-content-end mb-2">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end row -->
+    </div> <!-- container-fluid -->
+</div>
+
+

@@ -1,0 +1,117 @@
+﻿
+
+@model IEnumerable<Doctor_Side.Models.DocClinic>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    <h4 class="mb-0 font-size-18">Clinic List</h4>
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="../Home1/Index">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Clinic List </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- end page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="text-sm-right">
+                                    <!--<button type="button" class="btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2"><i class="mdi mdi-plus mr-1"></i><a class="mr-1" href="vendor_product_add.php"> Add New Product</a></button>-->
+                                    <a class="btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2" asp-action="Create" role="button">
+                                        <i class="mdi mdi-plus mr-1"></i>Add Clinic
+                                    </a>
+                                </div>
+                            </div><!-- end col-->
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-centered table-nowrap">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Profile</th>
+                                        <th>Name</th>
+                                        <th>Address</th>
+                                        <th>Pincode</th>
+                                        <th>State</th>
+                                        <th>City</th>
+                                        <th>Contact</th>
+
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td class="align-middle">
+                                                <img src="~/_content/Medical/Clinic_Images/@item.Clinic_Profile" height="50" width="50" class="rounded-circle" />
+                                            </td>
+                                            <td class="align-middle">@Html.DisplayFor(modelItem => item.Clinic_Name)</td>
+                                            <td class="align-middle">@Html.DisplayFor(modelItem => item.Clinic_Address)</td>
+                                            <td class="align-middle">@Html.DisplayFor(modelItem => item.Clinic_Pincode)</td>
+                                            <td class="align-middle">@Html.DisplayFor(modelItem => item.State_Name)</td>
+                                            <td class="align-middle">@Html.DisplayFor(modelItem => item.City_Name)</td>
+                                            <td class="align-middle">@Html.DisplayFor(modelItem => item.Clinic_Contact)</td>
+                                            @*<td class="align-middle">
+                                                    <img src="~/../../Medical/wwwroot/Clinic_Images/@item.Clinic_Profile" height="50" width="50" />
+                                                </td>*@
+
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.Clinic_ID" type="button" class="btn btn-primary btn-rounded waves-effect waves-light mb-2 mr-2">
+                                                    <i class="mdi mdi-pencil mr-1"></i>
+                                                    EDIT
+                                                </a>
+                                                <a asp-action="delete" asp-route-id="@item.Clinic_ID" type="button" class="btn btn-danger btn-rounded waves-effect waves-light mb-2 mr-2">
+                                                    <i class="mdi mdi-close mr-1"></i>
+                                                    DELETE
+                                                </a>
+                                                @*<button type="button" class="btn btn-primary btn-rounded waves-effect waves-light mb-2 mr-2">
+                                                        <i class="mdi mdi-pencil mr-1"></i>
+                                                        @Html.ActionLink("EDIT", "Edit", new { id = item.Clinic_ID })
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger btn-rounded waves-effect waves-light mb-2 mr-2">
+                                                        <i class="mdi mdi-close mr-1"></i>
+                                                        @Html.ActionLink("DELETE", "Delete", new { id = item.Clinic_ID })
+                                                    </button>*@
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+
+                            </table>
+                            @*<div class="alert alert-danger text-center mb-4" role="alert">
+                                    @ViewBag.Message
+                                </div>*@
+                        </div>
+
+
+                        <ul class="pagination pagination-rounded justify-content-end mb-2">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end row -->
+    </div> <!-- container-fluid -->
+</div>
+
