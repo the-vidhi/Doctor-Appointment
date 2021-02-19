@@ -1,0 +1,235 @@
+﻿@model Medical.Models.ViewModel
+
+@{
+    ViewData["Title"] = "Doctor Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-body">
+    <div class="page-wrapper">
+        <!-- Page-header start -->
+        <div class="page-header card">
+            <div class="card-block">
+                <h5 class="m-b-10">Doctor Profile</h5>
+                <ul class="breadcrumb-title b-t-default p-t-10">
+                    <li class="breadcrumb-item">
+                        <a href="../../Dashboard/Index"> <i class="fa fa-home"></i> </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="../Index">Doctor List</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="#">Doctor Profile</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Page-header end -->
+        <!-- Page-body start -->
+        <div class="page-body">
+            <!--profile cover start-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="cover-profile">
+                        <div class="profile-bg-img">
+                            <img class="profile-bg-img img-fluid" src="~/Admin/files/assets/images/user-profile/bg-img1.jpg" alt="bg-img">
+                            <div class="card-block user-info">
+                                <div class="col-md-12">
+                                    <div class="media-left">
+                                        <a href="#" class="profile-image">
+                                            <img class="user-img img-radius img-100" src="~/Doctor_Image/@Html.DisplayFor(m => m.doctor.Doctor_Profile)" alt="user-img">
+                                        </a>
+                                    </div>
+                                    <div class="media-body row">
+                                        <div class="col-lg-12">
+                                            <div class="user-title">
+                                                <h2>@Html.DisplayFor(m => m.doctor.Doctor_Name)</h2>
+                                                <span class="text-white">@Html.DisplayFor(m => m.doctor.Category_Name)</span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="pull-right cover-btn">
+                                                <button type="button" class="btn btn-danger"><i class="icofont fa-lock"></i> Block</button>
+                                                <a href="../BlockDoctor/@Html.DisplayFor(m => m.doctor.Doctor_ID)"><button class="btn btn-grd-danger btn-round"><i class="icofont fa-lock"></i> Block </button></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--profile cover end-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- tab header start -->
+                    <div class="tab-header card">
+                        <ul class="nav nav-tabs md-tabs tab-timeline" role="tablist" id="mytab">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#personal" role="tab">Personal Info</a>
+                                <div class="slide"></div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#binfo" role="tab">Clinic Info</a>
+                                <div class="slide"></div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#review" role="tab">Reviews</a>
+                                <div class="slide"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- tab header end -->
+                    <!-- tab content start -->
+                    <div class="tab-content">
+                        <!-- tab panel personal start -->
+                        <div class="tab-pane active" id="personal" role="tabpanel">
+                            <!-- personal card start -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-header-text">About Doctor</h5>                                    
+                                </div>
+                                <div class="card-block">
+                                    <div class="view-info">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="general-info">
+                                                    <div class="row">
+                                                        <div class="col-lg-12 col-xl-6">
+                                                            <div class="table-responsive">
+                                                                <table class="table m-0">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th scope="row">Full Name</th>
+                                                                            <td>@Html.DisplayFor(m => m.doctor.Doctor_Name)</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">Gender</th>
+                                                                            <td>@Html.DisplayFor(m => m.doctor.Doctor_Gender)</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">Email</th>
+                                                                            <td>@Html.DisplayFor(m => m.doctor.Doctor_Email)</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">Contact</th>
+                                                                            <td>@Html.DisplayFor(m => m.doctor.Doctor_Contact)</td>
+                                                                        </tr>                                                                        
+                                                                        <tr>
+                                                                            <th scope="row">Fee per Visit</th>
+                                                                            <td>@Html.DisplayFor(m => m.doctor.Doctor_Fees)</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end of table col-lg-6 -->
+                                                        <div class="col-lg-12 col-xl-6">
+                                                            <div class="table-responsive">
+                                                                <table class="table">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th scope="row">Degree</th>
+                                                                            <td>@Html.DisplayFor(m => m.doctor.Doctor_Degree)</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">Category</th>
+                                                                            <td>@Html.DisplayFor(m => m.doctor.Category_Name)</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">Education</th>
+                                                                            <td>@Html.DisplayFor(m => m.doctor.Doctor_Education)</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">Experience</th>
+                                                                            <td>@Html.DisplayFor(m => m.doctor.Doctor_Experience)</td>
+                                                                        </tr>
+                                                                        
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end of table col-lg-6 -->
+                                                    </div>
+                                                    <!-- end of row -->
+                                                </div>
+                                                <!-- end of general info -->
+                                            </div>
+                                            <!-- end of col-lg-12 -->
+                                        </div>
+                                        <!-- end of row -->
+                                    </div>
+                                    <!-- end of view-info -->                                   
+                                </div>
+                                <!-- end of card-block -->
+                            </div>
+                            <!-- personal card end-->
+                        </div>
+                        <!-- tab pane personal end -->
+                        <!-- tab pane info start -->
+                        <div class="tab-pane" id="binfo" role="tabpanel">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Name</th>
+                                            <td>@Html.DisplayFor(m => m.clinic.Clinic_Name)</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Category</th>
+                                            <td>@Html.DisplayFor(m => m.clinic.Clinic_Address)</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Education</th>
+                                            <td>@Html.DisplayFor(m => m.clinic.Clinic_Contact)</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Experience</th>
+                                            <td>@Html.DisplayFor(m => m.review.Review_Msg)</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- tab pane info end -->
+                        <div class="tab-pane" id="review" role="tabpanel">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-header-text">Review</h5>
+                                </div>
+                                <div class="card-block">
+                                    <ul class="media-list">
+                                        @foreach(var item in Model.reviewList) { 
+                                        <li class="media">
+                                            <div class="media-left">
+                                                <a href="#">
+                                                    <img class="media-object img-radius comment-img" src="~/Patient_Image/@item.Patient_Profile" alt="Generic placeholder image">
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <h6 class="media-heading">@item.Patient_Name<span class="f-12 text-muted m-l-5">Just now</span></h6>
+                                                <div class="stars-example-css review-star">
+                                                    <i class="icofont icofont-star"></i>
+                                                    <i class="icofont icofont-star"></i>
+                                                    <i class="icofont icofont-star"></i>
+                                                    <i class="icofont icofont-star"></i>
+                                                    <i class="icofont icofont-star"></i>
+                                                </div>
+                                                <p class="m-b-0">@item.Review_Msg</p>
+                                            </div>
+                                        </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- tab content end -->
+                </div>
+            </div>
+        </div>
+        <!-- Page-body end -->
+    </div>
+</div>

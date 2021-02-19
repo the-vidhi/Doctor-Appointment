@@ -1,0 +1,86 @@
+﻿@model Medical.Models.Medicine
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-body">
+    <div class="page-wrapper">
+        <div class="page-header card">
+            <div class="card-block">
+                <h5 class="m-b-10">Delete Medicine</h5>
+                <ul class="breadcrumb-title b-t-default p-t-10">
+                    <li class="breadcrumb-item">
+                        <a> <i class="fa fa-home"></i> </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="../Index">Medicine List</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a>Delete Medicine</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="page-body">
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Are you sure you want to delete this?</h5>
+
+                        </div>
+                        <div class="card-block">
+                            <dl class="row">
+                                <dt class="col-sm-2">
+                                    Medicine Name :
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Medicine_Name)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    Medicine Price :
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Medicine_Price)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    Medicine Brand :
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Medicine_Brand)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    Medicine Scrip Tablets :
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Medicine_Strip_Tablets)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    Medicine Image :
+                                </dt>
+                                <dd class="col-sm-10">
+                                    <img src="~/Medicine_Main_Image/@Html.DisplayFor(model=>model.Medicine_Image)" height="50" width="50" />
+                                </dd>
+                            </dl>
+
+                            <form asp-action="Delete">
+                                <input type="hidden" asp-for="Medicine_ID" />
+                                <input type="submit" value="Delete" class="btn btn-grd-danger" />
+                                <a asp-action="Index" class="btn hor-grd btn-grd-info">
+                                    BACK TO LIST
+                                </a>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="md-overlay"></div>
+        </div>
+    </div>
+</div>
+
+

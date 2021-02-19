@@ -1,0 +1,260 @@
+﻿@model PaginatedList<Medical.Models.Medicine>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-body">
+    <div class="page-wrapper">
+        <div class="page-header card">
+            <div class="card-block">
+                <h5 class="m-b-10">Medicine List</h5>
+                <ul class="breadcrumb-title b-t-default p-t-10">
+                    <li class="breadcrumb-item">
+                        <a href="../Home/Index"> <i class="fa fa-home"></i> </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a>Medicine List</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="page-body">
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Medicine List</h5>
+                            <a asp-action="Create" class="btn btn-grd-success btn-round f-right d-inline-block ">
+                                <i class="icofont icofont-plus m-r-5"></i> ADD MEDICINE
+                            </a>
+                        </div>
+                        <div class="card-block">
+                            <div class="table-responsive">
+                                <div class="table-content">
+                                    <div class="project-table">
+                                        <table id="e-product-list" class="table table-striped dt-responsive nowrap">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                         Image
+                                                    </th>
+                                                    <th>
+                                                         Name
+                                                    </th>
+
+                                                    <th>
+                                                      Price 
+                                                    </th>
+                                                    <th>
+                                                        Brand
+                                                    </th>
+                                                    <th>
+                                                       Medicine Strip Tablets
+                                                    </th>
+
+                                                    <th>
+                                                       Content
+                                                    </th>
+                                                    <th>
+                                                        Description
+                                                    </th>
+                                                    <th></th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model)
+                                                {
+                                                <tr>
+                                                    <td>
+                                                        <img src="~/Medicine_Main_Image/@item.Medicine_Image" class="img-radius" alt="User-Profile-Image" height="60" width="50" />
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Medicine_Name)
+                                                    </td>
+
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Medicine_Price)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Medicine_Brand)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Medicine_Strip_Tablets)
+                                                    </td>
+
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Medicine_Content)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Medicine_Description)
+                                                    </td>
+                                                    <td>
+                                                    </td>
+                                                    <td class="action-icon">
+                                                        <a asp-action="Edit" asp-route-id="@item.Medicine_ID" class="btn btn-grd-info btn-round">
+                                                            <span class="icofont icofont-ui-edit"></span>
+                                                            EDIT
+                                                        </a>
+                                                        <a asp-action="Delete" asp-route-id="@item.Medicine_ID" class="btn btn-grd-danger btn-round">
+                                                            <span class="icofont icofont-ui-delete"></span>
+                                                            DELETE
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                        <div class="row">
+                                            @{
+                                                var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                                                var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+                                            }
+                                            <div class="col-xs-12 col-sm-12 col-md-5">
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-7">
+                                                <div class="dataTables_paginate paging_simple_numbers" id="e-product-list_paginate">
+                                                    <ul class="pagination">
+                                                        <li class="paginate_button page-item previous disabled" id="e-product-list_previous">
+                                                            <a asp-action="Index"
+                                                               asp-route-sortOrder="@ViewData["CurrentSort"]"
+                                                               asp-route-pageNumber="@(Model.PageIndex - 1)"
+                                                               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                                                               class="btn btn-primary btn-round @prevDisabled">
+                                                                Previous
+                                                            </a>
+
+                                                        </li>
+
+                                                        <li class="paginate_button page-item next" id="e-product-list_next">
+                                                            <a asp-action="Index"
+                                                               asp-route-sortOrder="@ViewData["CurrentSort"]"
+                                                               asp-route-pageNumber="@(Model.PageIndex + 1)"
+                                                               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                                                               class="btn btn-primary btn-round @nextDisabled">
+                                                                Next
+                                                            </a>
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="md-overlay"></div>
+        </div>
+    </div>
+</div>
+
+@*<div class="main-body">
+    <div class="page-wrapper">
+        <div class="page-header card">
+            <div class="card-block">
+                <h5 class="m-b-10">Medicine List</h5>
+                <ul class="breadcrumb-title b-t-default p-t-10">
+                    <li class="breadcrumb-item">
+                        <a href="../Home/Index"> <i class="fa fa-home"></i> </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a>Medicine List</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="page-body">
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Medicine List</h5>
+                            <a asp-action="Create"><button class="btn btn-grd-success btn-round f-right d-inline-block "> <i class="icofont icofont-plus m-r-5"></i> ADD MEDICINE</button></a>
+
+                        </div>
+                        <div class="card-block">
+                            <div class="table-responsive">
+                                <div class="table-content">
+                                    <div class="project-table">
+                                        <table id="e-product-list" class="table table-striped dt-responsive nowrap">
+                                            <thead>
+                                                <tr>
+                                                    <th>  @Html.DisplayNameFor(model => model.Medicine_Name) </th>
+                                                    <th>  @Html.DisplayNameFor(model => model.Medicine_Price) </th>
+                                                    <th>  @Html.DisplayNameFor(model => model.Medicine_Brand) </th>
+                                                    <th>  @Html.DisplayNameFor(model => model.Medicine_Strip_Tablets) </th>
+                                                    <th>  @Html.DisplayNameFor(model => model.Medicine_Content) </th>
+                                                    <th>  @Html.DisplayNameFor(model => model.Medicine_Description) </th>
+                                                    <th>  @Html.DisplayNameFor(model => model.Medicine_Image) </th>
+                                                    <th> </th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model)
+                                                {
+                                                    <tr>
+                                                        <td class="pro-name">
+                                                            @Html.DisplayFor(modelItem => item.Medicine_Name)
+                                                        </td>
+                                                        <td class="pro-name">
+                                                            @Html.DisplayFor(modelItem => item.Medicine_Price)
+                                                        </td>
+                                                        <td class="pro-name">
+                                                            @Html.DisplayFor(modelItem => item.Medicine_Brand)
+                                                        </td>
+                                                        <td class="pro-name">
+                                                            @Html.DisplayFor(modelItem => item.Medicine_Strip_Tablets)
+                                                        </td>
+                                                        <td class="pro-name">
+                                                            @Html.DisplayFor(modelItem => item.Medicine_Content)
+                                                        </td>
+                                                        <td class="pro-name">
+                                                            @Html.DisplayFor(modelItem => item.Medicine_Description)
+                                                        </td>
+                                                        <td class="pro-name">
+                                                            <img src="~/Medicine_Main_Image/@item.Medicine_Image" height="40" width="80" />
+                                                        </td>
+                                                        <td>
+                                                        </td>
+                                                        <td>
+                                                        </td>
+                                                        <td class="action-icon">
+                                                            <a asp-action="Edit" asp-route-id="@item.Medicine_ID" class="btn btn-grd-info btn-round">
+                                                                <span class="icofont icofont-ui-edit"></span> 
+                                                                EDIT
+                                                            </a>
+                                                            <a asp-action="Delete" asp-route-id="@item.Medicine_ID" class="btn btn-grd-danger btn-round">
+                                                            <span class="icofont icofont-ui-delete"></span> 
+                                                                DELETE
+                                                            </a>
+
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="md-overlay"></div>
+        </div>
+    </div>
+</div>*@
+
+
+

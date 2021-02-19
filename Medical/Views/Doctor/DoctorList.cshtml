@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Medical.Models.Doctor>
+@{
+    ViewData["Title"] = "Doctor List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- Page-header start -->
+                <div class="page-header card">
+                    <div class="card-block">
+                        <h5 class="m-b-10">User Card</h5>
+                        <p class="text-muted m-b-10">More than 100+ widget</p>
+                        <ul class="breadcrumb-title b-t-default p-t-10">
+                            <li class="breadcrumb-item">
+                                <a href="index.html"> <i class="fa fa-home"></i> </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="#!">User Profile</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="#!">User Card</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Page-header end -->
+                <!-- Page-body start -->
+                <div class="page-body">
+                    
+                    <!-- Simple card start -->
+
+                    <div class="row simple-cards users-card">
+                        @foreach (var item in Model)
+                        {
+
+                        <div class="col-lg-6 col-xl-4 col-md-12">
+                            <div class="card user-card">
+                                <div class="card-header-img">
+                                    <div class="img-hover">
+                                        <img class="img-fluid img-radius" src="~/Doctor_Image/@item.Doctor_Profile" alt="round-img">
+                                        <div class="img-overlay img-radius">
+                                            <span>
+                                                <a href="Details/@item.Doctor_ID" class="btn btn-sm btn-primary"><i class="icofont icofont-eye-alt"></i></a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <h4>@item.Doctor_Name</h4>
+                                    <h5>@item.Doctor_Email</h5>
+                                    <h6>@item.Category_Name</h6>
+                                </div>
+                                <div>
+                                    <a href="Details/@item.Doctor_ID"><button type="button" class="btn btn-info waves-effect waves-light m-r-15"><i class="icofont icofont-plus m-r-5"></i>Profile</button></a>
+                                    <a href="BlockDoctor/@item.Doctor_ID"><button type="button" class="btn btn-dribbble waves-effect waves-light"><i class="icofont icofont-user m-r-5"></i>Block</button></a>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                        </div>
+                    
+                    <!-- end of row -->
+                    <!-- Simple card end -->
+                </div>
+            </div>
+        </div>
+   

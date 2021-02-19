@@ -1,0 +1,38 @@
+﻿@model Medical.Models.Medicine_Image
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Medicine_Image</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post" enctype="multipart/form-data" asp-controller="Medicine_Image" >
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Medicine_ID" class="control-label"></label>
+                <select asp-for="Medicine_ID" class="form-control" asp-items="@(new SelectList(ViewBag.MedList,"Medicine_ID","Medicine_Name"))">
+                </select>
+
+                <span asp-validation-for="Medicine_ID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Medicine_Images" class="control-label"></label>
+                <input type="file" name="fileobj" multiple asp-for="Medicine_Images" class="form-control" />
+                <span asp-validation-for="Medicine_Images" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Upload" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

@@ -1,0 +1,110 @@
+﻿@model IEnumerable<Medical.Models.ViewModel>
+@{
+    ViewData["Title"] = "Bill List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-body">
+    <div class="page-wrapper">
+        <!-- Page-header start -->
+        <div class="page-header card">
+            <div class="card-block">
+                <h5 class="m-b-10">Bill List</h5>
+                <p class="text-muted m-b-10">Find out whatever Bill Details you want overhere..</p>
+                <ul class="breadcrumb-title b-t-default p-t-10">
+                    <li class="breadcrumb-item">
+                        <a href="../Home/Index"> <i class="fa fa-home"></i> </a> </a>
+                    </li>
+                   
+                    <li class="breadcrumb-item">
+                        <a>Bill List</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Page-header end -->
+        <!-- Page body start -->
+        <div class="page-body invoice-list-page">
+            <div class="row">
+                <div class="col-xl-3 col-lg-12 pull-xl-3 filter-bar">
+                </div>
+                <div class="col-xl-9 col-lg-12 pull-xl-3 filter-bar">
+                    
+                    <div class="row">
+                        <!-- Invoice list card start -->
+
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-sm-6">
+                            <div class="card card-border-primary">
+                                <div class="card-header">
+                                    <h5>@item.bill.Patient_Name</h5>
+                                    <div class="dropdown-secondary dropdown f-right">
+                                        @if (item.order.Order_Status == "Delivered")
+                                        {
+                                        <button class="btn btn-success btn-mini  waves-effect waves-light" type="button">@item.order.Order_Status</button>
+                                        }
+                                        @if (item.order.Order_Status == "Shipped")
+                                        {
+                                        <button class="btn btn-dribbble btn-mini waves-effect waves-light" type="button">@item.order.Order_Status</button>
+                                        }
+                                        @if (item.order.Order_Status == "Confirm")
+                                        {
+                                        <button class="btn btn-warning btn-mini waves-effect waves-light" type="button">@item.order.Order_Status</button>
+                                        }
+
+                                        <span class="f-left m-r-5 text-inverse">Status : </span>
+                                    </div>
+                                </div>
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <ul class="list list-unstyled">
+                                                <li>Order ID #: &nbsp;@item.bill.Order_ID</li>
+                                                <li>Orderd on: <span class="text-semibold">@item.order.Order_Date</span></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <ul class="list list-unstyled text-right">
+                                                <li>@item.order.Order_Amount</li>
+                                                <li>Method: <span class="text-semibold">@item.payment.Payment_Type_Name</span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="task-list-table">
+                                        <p class="task-due">
+                                            <strong> Payment: </strong>
+                                            @if (@item.order.Is_Paid == true)
+                                            {
+                                                <strong class="label label-primary">
+                                                    Paid
+                                                </strong>
+                                            }
+                                            else
+                                            {
+                                        <strong class="label label-danger"> Remaining </strong>
+                         }
+
+                                        </p>
+                                    </div>
+                                    <div class="task-board m-0">
+                                        <a href="Details/@item.bill.Bill_ID" class="btn btn-info btn-mini b-none"><i class="icofont icofont-eye-alt m-0"></i></a>                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page body end -->
+    </div>
+</div>

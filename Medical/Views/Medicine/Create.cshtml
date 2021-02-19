@@ -1,0 +1,118 @@
+﻿@model Medical.Models.Medicine
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-body">
+    <div class="page-wrapper">
+        <div class="page-header card">
+            <div class="card-block">
+                <h5 class="m-b-10">Add Medicine</h5>
+                <ul class="breadcrumb-title b-t-default p-t-10">
+                    <li class="breadcrumb-item">
+                        <a href="../Home/Index"> <i class="fa fa-home"></i> </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="Index">Medicine List</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a>Medicine Add</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="page-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Add Medicine Here...</h5>
+                        </div>
+                        <div class="card-block">
+                            <form asp-action="Create" method="post" enctype="multipart/form-data" asp-controller="Medicine">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Medicine Name : </label>
+                                    <div class="col-sm-10">
+
+                                        <input asp-for="Medicine_Name" class="form-control" />
+                                        <span asp-validation-for="Medicine_Name" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Medicine Price : </label>
+                                    <div class="col-sm-10">
+
+                                        <input asp-for="Medicine_Price" class="form-control" />
+                                        <span asp-validation-for="Medicine_Price" class="text-danger"></span>
+
+                                    </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Medicine Brand : </label>
+                                        <div class="col-sm-10">
+
+                                            <input asp-for="Medicine_Brand" class="form-control" />
+                                            <span asp-validation-for="Medicine_Brand" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Medicine Strip Tablets : </label>
+                                        <div class="col-sm-10">
+
+                                            <input asp-for="Medicine_Strip_Tablets" class="form-control" />
+                                            <span asp-validation-for="Medicine_Strip_Tablets" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Medicine Content : </label>
+                                        <div class="col-sm-10">
+
+                                            <input asp-for="Medicine_Content" class="form-control" />
+                                            <span asp-validation-for="Medicine_Content" class="text-danger"></span>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Medicine Description : </label>
+                                        <div class="col-sm-10">
+
+                                            <input asp-for="Medicine_Description" class="form-control" />
+                                            <span asp-validation-for="Medicine_Description" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Medicine Image : </label>
+                                        <div class="col-sm-10">
+
+                                            <input type="file" name="fileobj" asp-for="Medicine_Image" class="form-control" />
+                                            <span asp-validation-for="Medicine_Image" class="text-danger"></span>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-2"></label>
+                                        <div class="col-sm-10">
+
+                                            <button class="btn btn-grd-success btn-round">ADD</button>
+                                            <!--<input type="submit" value="Create" class="btn btn-primary m-b-0" />-->
+                                        </div>
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

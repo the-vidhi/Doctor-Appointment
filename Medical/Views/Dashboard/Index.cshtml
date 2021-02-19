@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="page-wrapper">
+
+    <div class="page-body">
+        <div class="row">
+
+            <div class="col-md-6 col-xl-3">
+                <div class="card bg-c-blue order-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">Doctors</h6>
+                        <h2 class="text-right"><i class="fa fa-users f-left"></i><span>@TempData["doctorcount"]</span></h2>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <div class="card bg-c-green order-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">Patients</h6>
+                        <h2 class="text-right"><i class="fa fa-wheelchair f-left"></i><span>@TempData["patientcount"]</span></h2>
+
+</div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <div class="card bg-c-yellow order-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">Orders</h6>
+                        <h2 class="text-right"><i class="ti-shopping-cart f-left"></i><span>@TempData["ordercount"]</span></h2>
+
+</div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <div class="card bg-c-pink order-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">Medicines</h6>
+                        <h2 class="text-right"><i class="ti-support f-left"></i><span>@TempData["medicinecount"]</span></h2>
+
+</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
